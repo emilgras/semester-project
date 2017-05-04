@@ -17,9 +17,12 @@ For this exercise we will use both a relational Oracle database and  a non-relat
 As mentioned the modelling for the 2 types of databases are 2 completely different tasks and they will be explained in individual sections below.
 
 **Relational Database Modelling**
+
 Write some cool stuffy here…
 
+
 **Graph Database Modelling**
+
 Graph databases contain collections of nodes and sets of relationships. The main differences between relational and graph databases is that graphs have relationships that connects 2 or more nodes together. Relationships are also often referred to as edges. Neo4j uses what’s called a property graph, meaning that both nodes and edges can have properties attached to them.
 
 In our case we will need 3 types of nodes and 2 types of edges to model our data. 
