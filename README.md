@@ -12,6 +12,7 @@ Repository for semester project in our test and database courses on Cphbusiness 
 
 
 
+
 For this exercise we will use both a relational Oracle database and  a non-relational Neo4j Graph database to store our data. The data will obviously be modelled differently in the 2 types of databases. The Oracle database uses a predefined schema to model the data whereas the Graph database is schema less and therefore has no rules about the structure prior to inserting any data into it.
 
 As mentioned the modelling for the 2 types of databases are 2 completely different tasks and they will be explained in individual sections below.
@@ -19,6 +20,7 @@ As mentioned the modelling for the 2 types of databases are 2 completely differe
 **Relational Database Modelling**
 
 Write some cool stuffy here…
+
 
 
 **Graph Database Modelling**
