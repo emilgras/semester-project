@@ -8,3 +8,33 @@ Repository for semester project in our test and database courses on Cphbusiness 
 4. Erfaring med  Integration testing med henblik test af databasen(DBUnit etc).
 5. Erfaring med problemstillinger omhandlende test af databasen.**(Opsætning af test data, mocking)**
 6. Erfaring med Continuous Integration og de tilhørende værktøjer som er inkluderet i dette(Travis, Maven). 
+
+
+
+
+For this exercise we will use both a relational Oracle database and  a non-relational Neo4j Graph database to store our data. The data will obviously be modelled differently in the 2 types of databases. The Oracle database uses a predefined schema to model the data whereas the Graph database is schema less and therefore has no rules about the structure prior to inserting any data into it.
+
+As mentioned the modelling for the 2 types of databases are 2 completely different tasks and they will be explained in individual sections below.
+
+**Relational Database Modelling**
+Write some cool stuffy here…
+
+**Graph Database Modelling**
+Graph databases contain collections of nodes and sets of relationships. The main differences between relational and graph databases is that graphs have relationships that connects 2 or more nodes together. Relationships are also often referred to as edges. Neo4j uses what’s called a property graph, meaning that both nodes and edges can have properties attached to them.
+
+In our case we will need 3 types of nodes and 2 types of edges to model our data. 
+
+_Nodes_
+* Book 
+* Author
+* City
+
+_Edges_
+* MENTIONED
+* WROTE
+
+A simple model is shown below to describe all scenarios in our graph. 
+
+/// ADD IMAGE ///
+
+As we can see there are 3 nodes Book, Author and City. An author WROTE a Book and vice versa a Book was written by an author. In our case, we don’t need to add the extra relationship. A uni-directional graph will fit our purpose just fine. Furthermore, a Book can relate to a city if that city is mentioned in the book. And that is our simple model.
