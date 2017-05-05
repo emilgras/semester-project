@@ -12,14 +12,29 @@ Repository for semester project in our test and database courses on Cphbusiness 
 
 ### GUIDE: How to Download Gutenberg Books
 
-** PRE-REQUISITES **
+**PRE-REQUISITES**
 
 * Create an account at DigitalOcean https://www.digitalocean.com.
 
 * Additionally, you have to register your public SSH key at DigitalOcean. If you do not have a pair of keys read on how to do that. (https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
 
-* 1.	Furthermore, you have to create a Personal Access Token, see the first part of https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2.
+* Furthermore, you have to create a Personal Access Token, see the first part of https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2.
 
+**GETTING STARTED**
+
+By now, you should have a Digital Ocean access token stored on your computer (somewhere safe). You should also have an SSH key name.
+
+1. Next, on your personal machine add 2 environment variables. You do this by entering the following lines in you terminal if you use a mac:
+
+export DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"
+export SSH_KEY_NAME="your_key_name"
+
+or if you have a Windows machine you do it like this:
+
+set DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"
+set SSH_KEY_NAME="your_key_name"
+
+1.5 (OPTIONAL) When
 
 ### Database Design
 
