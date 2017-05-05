@@ -1,7 +1,7 @@
 # semester-project
 Repository for semester project in our test and database courses on Cphbusiness PBA in software development
 
-
+### Læringsmål (hvad hedder det på engelsk???)
 
 1. Opnå praktisk erfaring med TDD.
 2. Erfaring med Data driven testing, ved at bruge forskellige bibliotekter der kan læse test data fra filer(cvs, Excel, etc.).
@@ -10,9 +10,18 @@ Repository for semester project in our test and database courses on Cphbusiness 
 5. Erfaring med problemstillinger omhandlende test af databasen.**(Opsætning af test data, mocking)**
 6. Erfaring med Continuous Integration og de tilhørende værktøjer som er inkluderet i dette(Travis, Maven). 
 
+### GUIDE: How to Download Gutenberg Books
+
+** PRE-REQUISITES **
+
+* Create an account at DigitalOcean https://www.digitalocean.com.
+
+* Additionally, you have to register your public SSH key at DigitalOcean. If you do not have a pair of keys read on how to do that. (https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
+
+* 1.	Furthermore, you have to create a Personal Access Token, see the first part of https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2.
 
 
-
+### Database Design
 
 For this exercise we will use both a relational Oracle database and  a non-relational Neo4j Graph database to store our data. The data will obviously be modelled differently in the 2 types of databases. The Oracle database uses a predefined schema to model the data whereas the Graph database is schema less and therefore has no rules about the structure prior to inserting any data into it.
 
