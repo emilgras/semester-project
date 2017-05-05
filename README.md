@@ -1,5 +1,9 @@
+[![Build Status](https://travis-ci.org/hilleer/semester-project.svg?branch=master)](https://travis-ci.org/hilleer/semester-project)
+
 # semester-project
 Repository for semester project in our test and database courses on Cphbusiness PBA in software development
+We use travis to work with continuous integration in this project. 
+
 
 ## 1. Læringsmål
 
