@@ -27,7 +27,7 @@ By now, you should have a Digital Ocean access token stored on your computer (so
 1. Next, on your personal machine add 2 environment variables. You do this by entering the following lines in you terminal if you use a mac:
 
    export DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"
-    export SSH_KEY_NAME="your_key_name"
+   export SSH_KEY_NAME="your_key_name"
 
    or if you have a Windows machine you do it like this:
 
