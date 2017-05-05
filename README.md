@@ -26,13 +26,13 @@ By now, you should have a Digital Ocean access token stored on your computer (so
 
 1. Next, on your personal machine add 2 environment variables. You do this by entering the following lines in you terminal if    you use a mac:
 
-   export DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
-   export SSH_KEY_NAME="your_key_name"   
+   ~ export DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"    
+   ~ export SSH_KEY_NAME="your_key_name"    
 
    or if you have a Windows machine you do it like this:  
 
-   set DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
-   set SSH_KEY_NAME="your_key_name"   
+   ~ set DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
+   ~ set SSH_KEY_NAME="your_key_name"   
 
    _(OPTIONAL) When you add the environment variables directly in the terminal, they will NOT be stored permanently. If you        close your terminal or open a new terminal window, those 2 variables will no longer excist. They will only excist for as      long as your terminal session is running. This is perfectly fine as long as you are aware of this._  
    
