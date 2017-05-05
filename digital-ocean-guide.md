@@ -8,8 +8,6 @@
 
 3. Furthermore, you have to create a Personal Access Token, see the first part of https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2.
 
----
-
 ## GETTING STARTED
 
 By now, you should have a Digital Ocean access token stored on your computer (somewhere safe). You should also have an SSH key name.
