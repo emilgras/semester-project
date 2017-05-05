@@ -1,2 +1,4 @@
 /backend/target/
 .idea
+backend.iml
+/backend/nbproject/
