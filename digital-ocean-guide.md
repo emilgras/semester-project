@@ -2,13 +2,15 @@
 
 ## PRE-REQUISITES
 
-* Create an account at DigitalOcean https://www.digitalocean.com.
+1. Create an account at DigitalOcean https://www.digitalocean.com.
 
-* Additionally, you have to register your public SSH key at DigitalOcean. If you do not have a pair of keys read on how to do that. (https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
+2. Additionally, you have to register your public SSH key at DigitalOcean. If you do not have a pair of keys read on how to do that. (https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
 
-* Furthermore, you have to create a Personal Access Token, see the first part of https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2.
+3. Furthermore, you have to create a Personal Access Token, see the first part of https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2.
 
-##GETTING STARTED**
+---
+
+## GETTING STARTED
 
 By now, you should have a Digital Ocean access token stored on your computer (somewhere safe). You should also have an SSH key name.
 
@@ -33,7 +35,7 @@ or if you have a Windows machine you do it like this:
 
 ### 2. Install an additinal vagrant plugin on your personal machine (not the virtual machine).
 
-Ig vagrant is not installed on your    machine, you will get a message saying you need to install vagrant. Do that. This plugin is later used to copy all the        downloaded books from your droplet instance on Digital Ocean to your personal computer safely using ssh.
+Ig vagrant is not installed on your    machine, you will get a message saying you need to install vagrant. Do that. This plugin is later used to copy all the downloaded books from your droplet instance on Digital Ocean to your personal computer safely using ssh.
 
 `$ vagrant plugin install vagrant-scp`
 
@@ -46,9 +48,9 @@ Ig vagrant is not installed on your    machine, you will get a message saying yo
 ### 4. When you have succesfully installed the two vagrant plugins, we will actually start doing something. cd (change directory)    into your book_download directory inside your db_course_nosql that you have cloned from Helges github profile.
 
 `$ cd {path/to/your/project}/book_download`
-   
-   
-### 5. Enter the following command to create a new Droplet on Digital Ocean.   
+
+
+### 5. Enter the following command to create a new Droplet on Digital Ocean
 
 `$ vagrant up --provider=digital_ocean`
 
@@ -61,8 +63,8 @@ Ig vagrant is not installed on your    machine, you will get a message saying yo
 
 This last command will run the downloads.sh script. Basically, 3 things happens in this script:   
 
-1. This step downloads about 700 HTML files containing roughly 38,000 zip file links (urls). It will take about 30                minutes.   
+1. This step downloads about 700 HTML files containing roughly 38,000 zip file links (urls). It will take about 30 minutes
 
-2.	This step will loop through all url’s and download the actual zip files. This will take 36 to 48 hours.   
+2. This step will loop through all url’s and download the actual zip files. This will take 36 to 48 hours
 
-3.	Create a tar archive of all the zipped files.   
+3.	Create a tar archive of all the zipped files
