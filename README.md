@@ -24,15 +24,15 @@ Repository for semester project in our test and database courses on Cphbusiness 
 
 By now, you should have a Digital Ocean access token stored on your computer (somewhere safe). You should also have an SSH key name.
 
-1. Next, on your personal machine add 2 environment variables. You do this by entering the following lines in you terminal if you use a mac:
+1. Next, on your personal machine add 2 environment variables. You do this by entering the following lines in you terminal if    you use a mac:
 
-   export DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
-   export SSH_KEY_NAME="your_key_name"   
+   export DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
+   export SSH_KEY_NAME="your_key_name"   
 
    or if you have a Windows machine you do it like this:  
 
-   set DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
-   set SSH_KEY_NAME="your_key_name"   
+   set DIGITAL_OCEAN_TOKEN="your_access_token_comes_here"   
+   set SSH_KEY_NAME="your_key_name"   
 
    _(OPTIONAL) When you add the environment variables directly in the terminal, they will NOT be stored permanently. If you        close your terminal or open a new terminal window, those 2 variables will no longer excist. They will only excist for as      long as your terminal session is running. This is perfectly fine as long as you are aware of this._  
    
@@ -55,7 +55,7 @@ By now, you should have a Digital Ocean access token stored on your computer (so
    
 4. When you have succesfully installed the two vagrant plugins, we will actually start doing something. cd (change directory)    into your book_download directory inside your db_course_nosql that you have cloned from Helges github profile.
 
-   ~ cd {path/to/your/project}/book_download
+   ~ cd {path/to/your/project}/book_download
    
    
 5. Enter the following command to create a new Droplet on Digital Ocean.   
