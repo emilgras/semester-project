@@ -18,20 +18,19 @@ public class Mapper {
         cities.add("Paris");
         cities.add("Copenhagen");
 
-        //bookMap.put("hp", new String[]{"London", "Madrid", "Berlin", "Paris", "Copenhagen"});
         bookMap.put("hp", cities);
 
 
-
-        for(String s:bookMap.get(bookTitle)) {
-            System.out.println("City: " + s);
+        if (bookMap.get(bookTitle) != null) {
+             return bookMap.get(bookTitle);
         }
 
-        return bookMap.get(bookTitle);
-
+        // If not found, return empty Array
+        return new ArrayList<String>();
     }
 
     public static void main(String[] args) {
+        System.out.println("From mapper - does exist?: " + getAllCitiesByBookTitle("test"));
         System.out.println("From mapper: " + getAllCitiesByBookTitle("hp"));
     }
 }

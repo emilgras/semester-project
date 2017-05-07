@@ -1,13 +1,17 @@
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class MapperTest {
+
+    Mapper mapper;
 
     @BeforeClass
     public static void beforeClass () {
@@ -22,6 +26,7 @@ public class MapperTest {
     @Before
     public void before () {
         System.out.println("Tests are starting.....");
+        mapper = new Mapper();
     }
 
     @After
@@ -44,9 +49,20 @@ public class MapperTest {
     }
 
     @Test
+    @DisplayName("should return an empty array if book don't exist")
+    public void testGetAllCitiesByBookTitleIfDontExist () {
+        List<String> expectedResult = new ArrayList<String>();
+
+        List<String> actualResult = mapper.getAllCitiesByBookTitle("");
+
+        assertThat(actualResult, equalTo(expectedResult));
+
+
+    }
+
+    @Test
     @DisplayName("should return cities by book title")
-    public void getAllCitiesByBookTitle () {
-        Mapper mapper = new Mapper();
+    public void testGetAllCitiesByBookTitle () {
 
         List<String> actualResult = mapper.getAllCitiesByBookTitle("hp");
         System.out.println("from testIfgetAllCitiesByBookTitleIsEmpty: " + actualResult);
