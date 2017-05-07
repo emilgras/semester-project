@@ -53,7 +53,7 @@ public class MapperTest {
     public void testGetAllCitiesByBookTitleIfDontExist () {
         List<String> expectedResult = new ArrayList<String>();
 
-        List<String> actualResult = mapper.getAllCitiesByBookTitle("");
+        List<String> actualResult = mapper.getAllCitiesByBookTitle(""); 
 
         assertThat(actualResult, equalTo(expectedResult));
 
