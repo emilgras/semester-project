@@ -1,5 +1,10 @@
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +15,20 @@ import static org.junit.Assert.assertThat;
 
 public class MapperTest {
 
-    Mapper mapper;
+    static Mapper mapper;
 
-    @Before
-    public void before () {
-        System.out.println("Tests are starting.....");
+    @BeforeClass
+    public static void beforeClass () {
+        System.out.println("BeforeClass - initializing mapper \n\t\t-------------------- \n");
         mapper = new Mapper();
     }
 
-
+    @Rule
+    public TestRule watcher = new TestWatcher() {
+        protected void starting(Description description) {
+            System.out.println("Starting test... " + description.getMethodName() + "\n");
+        }
+    };
 
     @Test
     @DisplayName("should return an empty array if city with corresponding authors don't exist in entity")
@@ -39,7 +49,6 @@ public class MapperTest {
 
         List<String> actualResult = mapper.getAuthorsByCityName("copenhagen");
 
-        System.out.println("Actual result: " + actualResult.size() + " expected : " + expectedResult);
 
         assertThat(actualResult.size(), is(expectedResult));
     }
@@ -59,8 +68,17 @@ public class MapperTest {
     public void testGetAllCitiesByBookTitleListSize () {
 
         List<String> actualResult = mapper.getAllCitiesByBookTitle("hp");
-        System.out.println("from testIfgetAllCitiesByBookTitleIsEmpty: " + actualResult);
 
         assertThat(actualResult.size(), is(5));
+    }
+
+    @Test
+    @DisplayName("should return all books written by a given author")
+    public void testGetAllBooksWrittenByAuthor () {
+        int expectedResult = 3;
+
+        List<String> actualResult = mapper.getAllBooksWrittenByAuthor("Frank Hansen");
+
+        assertThat(actualResult.size(), equalTo(expectedResult));
     }
 }

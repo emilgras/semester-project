@@ -50,6 +50,25 @@ public class Mapper {
         return new ArrayList<String>();
     }
 
+    public List<String> getAllBooksWrittenByAuthor(String author) {
+
+        List<String> books = new ArrayList<String>();
+
+        Map<String, List<String>> booksMap = new HashMap<String, List<String>>();
+
+        books.add("My best hours");
+        books.add("Becoming a pirate");
+        books.add("Best of Disney's");
+
+        booksMap.put("Frank hansen", books);
+
+        if (booksMap.get(author) != null) {
+            return booksMap.get(author);
+        }
+
+        return books;
+    }
+
     public static void main(String[] args) {
         System.out.println("From mapper - does exist?: " + getAllCitiesByBookTitle("test"));
         System.out.println("From mapper: " + getAllCitiesByBookTitle("hp"));
@@ -57,4 +76,5 @@ public class Mapper {
         System.out.println("From mapper - does exist?: " + getAuthorsByCityName("test"));
         System.out.println("From mapper: " + getAuthorsByCityName("copenhagen"));
     }
+
 }
