@@ -29,8 +29,32 @@ public class Mapper {
         return new ArrayList<String>();
     }
 
+    public static List<String> getAuthorsByCityName(String cityName) {
+
+        List<String> authors = new ArrayList<String>();
+
+        Map<String, List<String>> cityMap = new HashMap<String, List<String>>();
+
+        authors.add("Obama");
+        authors.add("Putin");
+        authors.add("Michael Jackson");
+        authors.add("Lars Løkke Rasmussen");
+        authors.add("Anders Hemmingsen");
+
+        cityMap.put("copenhagen", authors);
+
+        if (cityMap.get(cityName) != null) {
+            return cityMap.get(cityName);
+        }
+
+        return new ArrayList<String>();
+    }
+
     public static void main(String[] args) {
         System.out.println("From mapper - does exist?: " + getAllCitiesByBookTitle("test"));
         System.out.println("From mapper: " + getAllCitiesByBookTitle("hp"));
+
+        System.out.println("From mapper - does exist?: " + getAuthorsByCityName("test"));
+        System.out.println("From mapper: " + getAuthorsByCityName("copenhagen"));
     }
 }

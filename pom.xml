@@ -46,12 +46,20 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.opentest4j/opentest4j -->
+        <dependency>
+            <groupId>org.opentest4j</groupId>
+            <artifactId>opentest4j</artifactId>
+            <version>1.0.0-M1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>RELEASE</version>
         </dependency>
     </dependencies>
+
 
     <reporting>
         <plugins>
