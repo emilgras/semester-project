@@ -2,4 +2,6 @@
 .idea
 backend.iml
 /backend/nbproject/
-/target
+/target/
+/nbproject/
+
