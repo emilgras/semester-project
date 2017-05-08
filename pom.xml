@@ -3,10 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <groupId>backend</groupId>
     <artifactId>backend</artifactId>
     <version>1.0-SNAPSHOT</version>
+    
+    <properties>
+        <java.version>1.8</java.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.hibernate.ogm</groupId>
+                <artifactId>hibernate-ogm-bom</artifactId>
+                <version>5.1.0.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -32,6 +53,7 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
+        <!-- Database -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -39,6 +61,17 @@
             <type>jar</type>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-neo4j</artifactId>
+        </dependency>
+        <!--
+        Test
+        Observe that the <type>test-jar</type> is crucial. 
+        Without it you would get the common neo4j-kernel jar, not the one containing the testing facilities.
+
+        -->
+        
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -60,9 +93,25 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <!-- JPA -->
+        
+        <!-- For connection pooling -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
     </dependencies>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8f3c69cada690f409830e8e4a0a3bb1d06d04f74
     <reporting>
         <plugins>
             <plugin>
@@ -103,9 +152,8 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>
+            </plugin>  
         </plugins>
     </reporting>
-
-
+  
 </project>
