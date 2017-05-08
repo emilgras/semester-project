@@ -31,7 +31,7 @@ public class MapperTest {
     };
 
     @Test
-    @DisplayName("should return an empty array if city with corresponding authors don't exist in entity")
+    @DisplayName("should return an empty array if city is not found in any books")
     public void testGetAuthorsByCityNameIfDontExist () {
         List<String> expectedResult = new ArrayList<String>();
 
@@ -42,13 +42,14 @@ public class MapperTest {
 
 
     @Test
-    @DisplayName("should return authors corresponding to the city name")
+    @DisplayName("should return all book titles with corresponding authors where the city is mentioned in the book")
     public void testGetAuthorsByCityNameListSize () {
 
-        int expectedResult = 5;
+        int expectedResult = 1;
 
-        List<String> actualResult = mapper.getAuthorsByCityName("copenhagen");
+        //List<String> actualResult = mapper.getAuthorsByCityName("copenhagen");
 
+        List<String> actualResult = mapper.getBooksMentioningCity("copenhagen");
 
         assertThat(actualResult.size(), is(expectedResult));
     }

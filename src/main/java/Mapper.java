@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,12 +70,40 @@ public class Mapper {
         return books;
     }
 
+    public static List<String> getBooksMentioningCity(String cityName) {
+
+        FileSearch fileSarch = new FileSearch();
+
+        List<String> books = new ArrayList<>();
+
+        List<File> files = new ArrayList<>();
+
+        File book1 = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book1.txt");
+        File book2 = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book2.txt");
+        File book3 = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book3.txt");
+
+        files.add(book1);
+        files.add(book2);
+        files.add(book3);
+
+        for(File file: files) {
+            if (fileSarch.containsString(file, cityName)){
+                System.out.println(file + " was true for city: " + cityName);
+                books.add(file.getName());
+            }
+        }
+
+        return books;
+    }
+
     public static void main(String[] args) {
         System.out.println("From mapper - does exist?: " + getAllCitiesByBookTitle("test"));
         System.out.println("From mapper: " + getAllCitiesByBookTitle("hp"));
 
         System.out.println("From mapper - does exist?: " + getAuthorsByCityName("test"));
         System.out.println("From mapper: " + getAuthorsByCityName("copenhagen"));
+
+        System.out.println("Testing 'getBooksMentioningCity': " + getBooksMentioningCity("lyngby"));
     }
 
 }
