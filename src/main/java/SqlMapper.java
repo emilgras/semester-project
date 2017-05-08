@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SqlMapper implements Mapper{
+public class SqlMapper implements MapperInterface{
 
 
     public List<String> getAllCitiesByBookTitle(String bookTitle) {
-
+        
         List<String> cities = new ArrayList<String>();
 
         Map<String, List<String>> bookMap = new HashMap<String, List<String>>();
