@@ -1,19 +1,14 @@
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
 
 // 2. Given a book title, your application plots all cities mentioned in this book onto a map.
 // 3. Given an author name your application lists all books written by that author and plots all cities mentioned in any of the books onto a map.
@@ -38,7 +33,7 @@ public class SeleniumTests {
         expectedResult = cityExpected;
     }
 
-
+    @Ignore
     @Test
     @DisplayName("should 2 .....")
     public void testAllCityPlots () {
