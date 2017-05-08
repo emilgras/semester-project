@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Mapper {
+public class SqlMapper implements MapperInterface{
 
 
-    public static List<String> getAllCitiesByBookTitle(String bookTitle) {
-
+    public List<String> getAllCitiesByBookTitle(String bookTitle) {
+        
         List<String> cities = new ArrayList<String>();
 
         Map<String, List<String>> bookMap = new HashMap<String, List<String>>();
@@ -30,7 +30,7 @@ public class Mapper {
         return new ArrayList<String>();
     }
 
-    public static List<String> getAuthorsByCityName(String cityName) {
+    public List<String> getAuthorsByCityName(String cityName) {
 
         List<String> authors = new ArrayList<String>();
 
@@ -70,7 +70,7 @@ public class Mapper {
         return books;
     }
 
-    public static List<String> getBooksMentioningCity(String cityName) {
+    public List<String> getBooksMentioningCity(String cityName) {
 
         FileSearch fileSarch = new FileSearch();
 
@@ -101,15 +101,4 @@ public class Mapper {
 
         return books;
     }
-
-    public static void main(String[] args) {
-        System.out.println("From mapper - does exist?: " + getAllCitiesByBookTitle("test"));
-        System.out.println("From mapper: " + getAllCitiesByBookTitle("hp"));
-
-        System.out.println("From mapper - does exist?: " + getAuthorsByCityName("test"));
-        System.out.println("From mapper: " + getAuthorsByCityName("copenhagen"));
-
-        System.out.println("Testing 'getBooksMentioningCity': " + getBooksMentioningCity("lyngby"));
-    }
-
 }
