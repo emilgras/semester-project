@@ -15,12 +15,12 @@ import static org.junit.Assert.assertThat;
 
 public class MapperTest {
 
-    static Mapper mapper;
+    static SqlMapper mapper;
 
     @BeforeClass
     public static void beforeClass () {
         System.out.println("BeforeClass - initializing mapper \n\t\t-------------------- \n");
-        mapper = new Mapper();
+        mapper = new SqlMapper();
     }
 
     @Rule
