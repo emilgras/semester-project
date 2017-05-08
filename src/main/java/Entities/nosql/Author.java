@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Entities.Graph;
 
-import java.io.Serializable;
+package Entities.nosql;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
-
-/**
- *
- * @author abj
- */
 @Entity
 public class Author implements Serializable {
 
@@ -26,5 +17,7 @@ public class Author implements Serializable {
     public Long getId() {
         return id;
     }
+
+
     
 }
