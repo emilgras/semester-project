@@ -61,17 +61,13 @@
             <type>jar</type>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-neo4j</artifactId>
-        </dependency>
         <!--
         Test
-        Observe that the <type>test-jar</type> is crucial. 
+        Observe that the <type>test-jar</type> is crucial.
         Without it you would get the common neo4j-kernel jar, not the one containing the testing facilities.
 
         -->
-        
+
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -79,12 +75,23 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.opentest4j/opentest4j -->
+        <dependency>
+            <groupId>org.opentest4j</groupId>
+            <artifactId>opentest4j</artifactId>
+            <version>1.0.0-M1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.0.0-M3</version>
+            <version>RELEASE</version>
             <scope>test</scope>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-neo4j</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
