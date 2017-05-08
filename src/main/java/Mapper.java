@@ -82,14 +82,18 @@ public class Mapper {
         File book2 = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book2.txt");
         File book3 = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book3.txt");
 
+
         files.add(book1);
         files.add(book2);
         files.add(book3);
 
-        for(File file: files) {
-            if (fileSarch.containsString(file, cityName)){
-                System.out.println(file + " was true for city: " + cityName);
-                books.add(file.getName());
+        if (files != null) {
+
+            for(File file: files) {
+                if (fileSarch.containsString(file, cityName)){
+                    System.out.println(file + " was true for city: " + cityName);
+                    books.add(file.getName());
+                }
             }
         }
 
