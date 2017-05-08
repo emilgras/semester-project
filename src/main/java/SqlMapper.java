@@ -1,14 +1,21 @@
+
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SqlMapper implements MapperInterface{
+public class SqlMapper implements MapperInterface {
 
+    Connection con;
 
     public List<String> getAllCitiesByBookTitle(String bookTitle) {
-        
+
         List<String> cities = new ArrayList<String>();
 
         Map<String, List<String>> bookMap = new HashMap<String, List<String>>();
@@ -21,9 +28,8 @@ public class SqlMapper implements MapperInterface{
 
         bookMap.put("hp", cities);
 
-
         if (bookMap.get(bookTitle) != null) {
-             return bookMap.get(bookTitle);
+            return bookMap.get(bookTitle);
         }
 
         // If not found, return empty Array
@@ -84,15 +90,14 @@ public class SqlMapper implements MapperInterface{
 
         System.out.println("Current working directory: " + System.getProperty("user.dir"));
 
-
         files.add(book1);
         files.add(book2);
         files.add(book3);
 
         if (files != null) {
 
-            for(File file: files) {
-                if (fileSarch.containsString(file, cityName)){
+            for (File file : files) {
+                if (fileSarch.containsString(file, cityName)) {
                     System.out.println(file + " was true for city: " + cityName);
                     books.add(file.getName());
                 }
@@ -100,5 +105,48 @@ public class SqlMapper implements MapperInterface{
         }
 
         return books;
+    }
+
+    @Override
+    public ResultSet getBooksAndAuthorsByMentionsOfCityName(String CityName) {
+        ResultSet rs = null;
+        try {
+            
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/books", "lalelarsen", "frederik2000");
+            String query = "Select books.`Title`, authors.`AuthorName`  from books  \n"
+                    + "join mentions on books.`ID` = mentions.`BookId` \n"
+                    + "join cities on mentions.`CityId` = cities.`ID`\n"
+                    + "join authors on books.`AuthorID` = authors.`ID`\n"
+                    + "where cities.`CityName` = '" + CityName + "'";
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(query);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    @Override
+    public ResultSet getGeoLocationByBookTitle(String bookTitle) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ResultSet getAllBooksAndGeoLocationsWrittenByAuthor(String Authorname) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ResultSet getAllBooksMentioningCityAtGeoLocation(float longtitude, float latitude) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void main(String[] args) throws SQLException {
+        SqlMapper sm = new SqlMapper();
+        ResultSet rs = sm.getBooksAndAuthorsByMentionsOfCityName("Copenhagen");
+        while (rs.next()) {
+            System.out.println(rs.getString(0)+ "," + rs.getString(1));
+        }
     }
 }

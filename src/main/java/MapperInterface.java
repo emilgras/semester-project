@@ -1,13 +1,15 @@
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public interface MapperInterface {
     
-    public List<String> getAllCitiesByBookTitle(String bookTitle);
-
-    public List<String> getAuthorsByCityName(String cityName);
-
-    public List<String> getAllBooksWrittenByAuthor(String author);
+    public ResultSet getBooksAndAuthorsByMentionsOfCityName(String CityName);
     
-    public List<String> getBooksMentioningCity(String cityName);
+    public ResultSet getGeoLocationByBookTitle(String bookTitle);
+    
+    public ResultSet getAllBooksAndGeoLocationsWrittenByAuthor(String Authorname);
+    
+    public ResultSet getAllBooksMentioningCityAtGeoLocation(float longtitude, float latitude);
+    
 }
