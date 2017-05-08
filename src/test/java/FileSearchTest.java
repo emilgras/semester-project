@@ -34,7 +34,7 @@ public class FileSearchTest {
         boolean expectedResult = true;
 
         String cityName = "copenhagen";
-        File file = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book1.txt");
+        File file = new File(System.getProperty("user.dir") + "/src/main/java/book1.txt");
 
         boolean actualResult = fileSearch.containsString(file, cityName);
 
