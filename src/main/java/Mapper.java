@@ -78,9 +78,9 @@ public class Mapper {
 
         List<File> files = new ArrayList<>();
 
-        File book1 = new File(System.getProperty("user.dir") + "\\src\\main\\java\\book1.txt");
-        File book2 = new File(System.getProperty("user.dir") + "\\src\\main\\java\\book2.txt");
-        File book3 = new File(System.getProperty("user.dir") + "\\src\\main\\java\\book3.txt");
+        File book1 = new File(System.getProperty("user.dir") + "/src/main/java/book1.txt");
+        File book2 = new File(System.getProperty("user.dir") + "/src/main/java/book2.txt");
+        File book3 = new File(System.getProperty("user.dir") + "/src/main/java/book3.txt");
 
         System.out.println("Current working directory: " + System.getProperty("user.dir"));
 
