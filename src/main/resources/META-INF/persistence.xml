@@ -54,11 +54,14 @@
     Neo4j
     -->
    
-   <persistence-unit name="ogm-neo4j_LOCAL" transaction-type="RESOURCE_LOCAL">
+   <persistence-unit name="ogm-neo4j_LOCAL">
         <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
         <properties>
-            <property name="hibernate.ogm.datastore.provider" value="neo4j_embedded"/>
-            <property name="hibernate.ogm.neo4j.database_path" value="${graphdb.path}" />
+            <property name="hibernate.ogm.datastore.provider" value="neo4j_bolt"/>
+            <property name="hibernate.ogm.datastore.host" value="localhost:7687"/>
+            <property name="hibernate.ogm.datastore.username" value="neo4j" />
+            <property name="hibernate.ogm.datastore.password" value="class" />
+            
             <property name="hibernate.search.default.directory_provider" value="ram" />
         </properties>
     </persistence-unit>

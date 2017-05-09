@@ -10,12 +10,10 @@
     
     <properties>
         <java.version>1.8</java.version>
-        <hibernate.version>4.3.6.Final</hibernate.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-    
+    </properties> 
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -25,9 +23,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate</artifactId>
+                <version>3.5.4-Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -61,13 +65,32 @@
             <type>jar</type>
             <scope>test</scope>
         </dependency>
+        
+    <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+    </dependency>
+     
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>jta</artifactId>
+      <version>1.1</version>
+  </dependency>
+    
+    <dependency>
+        <groupId>org.hibernate.ogm</groupId>
+        <artifactId>hibernate-ogm-neo4j</artifactId>
+    </dependency>
         <!--
         Test
         Observe that the <type>test-jar</type> is crucial.
         Without it you would get the common neo4j-kernel jar, not the one containing the testing facilities.
 
-        -->
-
+        --> 
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -90,10 +113,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-neo4j</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
@@ -104,8 +123,18 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
-            <version>${hibernate.version}</version>
+            <version>[5.0.0,5.9.9)</version>
         </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        
     </dependencies>
     <reporting>
         <plugins>
