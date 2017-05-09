@@ -129,8 +129,16 @@ Vagrant.configure("2") do |config|
     sudo neo4j restart
 
     sudo /usr/bin/neo4j-admin set-initial-password class
-
-  
+	
+	sudo mkdir /usr/share/neo4j/import
+	
+	wget https://github.com/hilleer/semester-project/raw/master/files/archive_graphfiles.tar.gz
+    
+    tar -xzvf archive_graphfiles.tar.gz
+	#Example: change to csv
+    sudo mv ./book1.txt /var/lib/neo4j/import
+    sudo mv ./cities1500.txt /var/lib/neo4j/import
+	echo "data imported!!"
     sudo mkdir -p /data/db
     # TODO:
     # /etc/mongodb.conf modify bind_ip line to 0.0.0.0 and restart server
