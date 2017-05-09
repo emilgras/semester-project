@@ -6,17 +6,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Author implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
-    public Long getId() {
+    private String authorName;
+
+    public Author() {
+    }
+
+    public Author(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getId() {
         return id;
     }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+    
+    
+    
+    
 
 
     
