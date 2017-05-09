@@ -4,3 +4,4 @@ backend.iml
 /backend/nbproject/
 /target/
 /nbproject/
+*.DS_Store
