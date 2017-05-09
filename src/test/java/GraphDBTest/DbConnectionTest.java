@@ -16,10 +16,12 @@ import org.junit.BeforeClass;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import org.junit.Ignore;
 /**
  *
  * @author abj
  */
+@Ignore
 public class DbConnectionTest {
     
     public DbConnectionTest() {
@@ -39,6 +41,7 @@ public class DbConnectionTest {
 
     
     @Test
+    @Ignore
     public void canPersistAndLoadAuthor(){
     
     EntityManager entityManager = entityManagerFactory.createEntityManager();
