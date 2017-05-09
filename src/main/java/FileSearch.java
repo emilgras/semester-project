@@ -73,7 +73,7 @@ public class FileSearch {
                 
                 for (String col : columns) {
                     // for every word remove special chars
-                    String trimmed = col.replaceAll("[-+.^:,;]", "").toLowerCase();
+                    String trimmed = col.replaceAll("[+.^:,;]", "").toLowerCase();
                     
                     // map the word into the hashmap
                     wordMapping.put(trimmed, trimmed);
