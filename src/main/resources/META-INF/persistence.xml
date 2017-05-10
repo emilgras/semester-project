@@ -10,9 +10,9 @@
         <!-- INSERT ENTITY CLASS HERE <class></class> -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:usersDB;create=true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:booksDB;create=true"/>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-            <property name="javax.persistence.sql-load-script-source" value="scripts/createUsers.sql"/>
+            <property name="javax.persistence.sql-load-script-source" value=""/>
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
