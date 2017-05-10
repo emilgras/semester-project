@@ -3,10 +3,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import static java.nio.file.StandardOpenOption.APPEND;
-import static java.nio.file.StandardOpenOption.CREATE;
 import java.util.ArrayList;
 import java.util.stream.Stream;
+
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,7 +56,7 @@ public class FileHandler {
     public boolean writeFile(String[][] data, String dir, String header) {
         try {
             // add the header to csv
-            Files.write(Paths.get(dir), header.getBytes(), APPEND, CREATE);
+            Files.write(Paths.get(dir), header.getBytes("UTF-8"), APPEND, CREATE);
             // add all the cities and geolocations
             for (int i = 0; i < data.length; i++) {
                 String row = "";
@@ -68,8 +69,7 @@ public class FileHandler {
                         row += data[i][j] + "\n";
                     }
                 }
-                //System.out.println("ROW: " + row);
-                Files.write(Paths.get(dir), row.getBytes(), APPEND, CREATE);
+                Files.write(Paths.get(dir), row.getBytes("UTF-8"), APPEND, CREATE);
             }
         } catch (Exception e) {
             e.printStackTrace();
