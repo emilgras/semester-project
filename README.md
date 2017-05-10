@@ -4,6 +4,8 @@
 Repository for semester project in our test and database courses on Cphbusiness PBA in software development
 We use travis to work with continuous integration in this project. 
 
+[Frontend repository](https://github.com/hilleer/semester-project-frontend) for the project
+
 
 ## 1. Læringsmål
 
