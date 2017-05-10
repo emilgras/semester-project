@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class FileSearch {
 
@@ -91,10 +92,32 @@ public class FileSearch {
                 }
             }
             
+            
+            
+            System.out.println("book id: " + 2367);
+            
+            // TODO: call method to get the unique id from this current book
+            
+            FileHandler handler = new FileHandler();
+            String[][] connections = new String[foundCities.size()][2];
             // convenience - print all found cities in the book
-            for (String str : foundCities.keySet()) {
-                System.out.println("CITY FOUND: " + str);
+            
+            
+            int index = 0;
+            for (String city : foundCities.keySet()) {
+                
+                int id = index + 1;
+                System.out.println(city + "," + id);
+                connections[index][0] = "" + id;
+                connections[index][1] = city;
+                index++;
             }
+            System.out.println("SIZE: " + connections.length);
+            boolean result = handler.writeFile(connections, "files/book_city_edges.csv", "book_id,city_name\n");
+            System.out.println("------ CSV DONE! ------- " + result);
+
+            
+            
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,7 +125,8 @@ public class FileSearch {
             try {
                 in.close();
             } catch (Exception e) {
-                /* ignore */ }
+                /* ignore */ 
+            }
         }
 
     }
