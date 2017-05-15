@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
   # config.vm.network "forwarded_port", guest: 27019, host: 27019
   config.vm.network "forwarded_port", guest: 28017, host: 28017
   # for MySQL DB server
-  config.vm.network "forwarded_port", guest: 3307, host: 3307
+  config.vm.network "forwarded_port", guest: 3306, host: 3307
 
   # For Python serving examples
   config.vm.network "forwarded_port", guest: 8001, host: 8001
@@ -134,12 +134,15 @@ Vagrant.configure("2") do |config|
 	
 	wget https://github.com/emilgras/graph_data/raw/master/graph_data.tar.gz
     tar -xzvf graph_data.tar.gz
+	
     sudo mv ./city_nodes.csv /var/lib/neo4j/import
+	
     sudo mv ./geo_nodes.csv /var/lib/neo4j/import
+	
     sudo mv ./city_geo_edges.csv /var/lib/neo4j/import
     # I do not know why I moved earlier to /usr/share/neo4j/import/
 	
-	echo "gode ting"
+	echo "gode ting sker"
 	
     rm ./graph_data.tar.gz
 	

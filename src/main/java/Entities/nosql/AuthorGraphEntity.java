@@ -9,7 +9,7 @@ import java.io.Serializable;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Author implements Serializable {
+public class AuthorGraphEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,10 +18,10 @@ public class Author implements Serializable {
 
     private String authorName;
 
-    public Author() {
+    public AuthorGraphEntity() {
     }
 
-    public Author(String authorName) {
+    public AuthorGraphEntity(String authorName) {
         this.authorName = authorName;
     }
 

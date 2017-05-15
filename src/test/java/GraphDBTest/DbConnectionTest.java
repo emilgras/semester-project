@@ -5,7 +5,7 @@
  */
 package GraphDBTest;
 
-import Entities.nosql.Author;
+import Entities.nosql.AuthorGraphEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -49,7 +49,7 @@ public class DbConnectionTest {
     entityManager.getTransaction().begin();
    
     // create an Author
-    Author bob = new Author( "Bob");
+    AuthorGraphEntity bob = new AuthorGraphEntity( "Bob");
     entityManager.persist( bob );
 
     entityManager.getTransaction().commit();
@@ -61,7 +61,7 @@ public class DbConnectionTest {
      // load it back
     entityManager.getTransaction().begin();
 
-    Author loadedAuthor = entityManager.find( Author.class, bob.getId() );
+    AuthorGraphEntity loadedAuthor = entityManager.find(AuthorGraphEntity.class, bob.getId() );
     assertNotNull(loadedAuthor);
     assertThat(loadedAuthor.getAuthorName(), equalTo("Bob"));
     entityManager.getTransaction().commit();
