@@ -1,7 +1,7 @@
 
 import java.util.List;
 
-public class NoSqlMapper implements MapperInterface{
+public class NoSqlMapper implements SqlMapperInterface{
 
     @Override
     public List<String> getAllCitiesByBookTitle(String bookTitle) {

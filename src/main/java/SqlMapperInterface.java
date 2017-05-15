@@ -1,7 +1,9 @@
 
+
+
 import java.util.List;
 
-public interface MapperInterface {
+public interface SqlMapperInterface {
     
     public List<String> getAllCitiesByBookTitle(String bookTitle);
 

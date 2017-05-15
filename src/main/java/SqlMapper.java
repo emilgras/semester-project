@@ -1,10 +1,12 @@
+
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SqlMapper implements MapperInterface{
+public class SqlMapper implements SqlMapperInterface{
 
 
     public List<String> getAllCitiesByBookTitle(String bookTitle) {
