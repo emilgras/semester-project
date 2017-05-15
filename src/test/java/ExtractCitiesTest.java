@@ -120,13 +120,9 @@ public class ExtractCitiesTest {
 
         String[][] citiesSplit = Arrays.copyOfRange(cities, 0, 100);
 
-
-        String newFileDir = "files/this_is_a_new_csv.csv";
         
-        boolean actualResult = handler.writeFile(citiesSplit, newFileDir, CITY_NODES_HEADER);
+        boolean actualResult = handler.writeFile(citiesSplit, CITY_NODES_DIR, CITY_NODES_HEADER);
 
-        // Remove file when tested
-        handler.removeFile(newFileDir);
 
         assertThat(actualResult, equalTo(expectedResult));
     }
