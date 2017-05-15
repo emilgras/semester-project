@@ -11,6 +11,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -118,9 +119,12 @@ public class ExtractCitiesTest {
     public void testWriteFile () {
         boolean expectedResult = true;
 
+        String[][] citiesSplit = Arrays.copyOfRange(cities, 0, 100);
+
+
         String newFileDir = "files/this_is_a_new_csv.csv";
         
-        boolean actualResult = handler.writeFile(cities, newFileDir, CITY_NODES_HEADER);
+        boolean actualResult = handler.writeFile(citiesSplit, newFileDir, CITY_NODES_HEADER);
 
         // Remove file when tested
         handler.removeFile(newFileDir);
