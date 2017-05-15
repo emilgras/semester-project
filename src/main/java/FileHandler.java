@@ -81,8 +81,11 @@ public class FileHandler {
                 }
                 fileWriter.write(csvRow.getBytes());
             }
+            System.out.println("Closing fileWriter");
             fileWriter.close();
         } catch (Exception e) {
+            System.out.println("writeFile error!");
+            System.out.println(e);
             e.printStackTrace();
             return false;
         }

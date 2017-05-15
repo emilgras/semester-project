@@ -27,7 +27,7 @@ public class ExtractCitiesTest {
     private static String[][] geolocations;
     private static String[][] connections;
     
-    private final String READ_DIR = "files/cities15000.txt";
+    private static final String READ_DIR = "files/cities15000.txt";
     private static final String CITY_NODES_DIR = "files/city_nodes.csv";
     private static final String GEO_NODES_DIR = "files/geo_nodes.csv";
     private static final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
@@ -40,7 +40,7 @@ public class ExtractCitiesTest {
         System.out.println("BeforeClass - initializing FileHandler \n\t\t-------------------- \n");
         handler = new FileHandler();
         System.out.println("BeforeClass - reading file and extracting data to use in tests \n\t\t-------------------- \n");
-        file = handler.readFile(FileHandler.READ_DIR);
+        file = handler.readFile(READ_DIR);
         cities = handler.extractCitiesFromFile(file);
         geolocations = handler.extractGeoLocationsFromFile(file);
         connections = handler.extractConnectionsFromFile(file);
