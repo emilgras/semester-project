@@ -119,7 +119,7 @@ public class ExtractCitiesTest {
     public void testWriteFile () {
         boolean expectedResult = true;
         
-        boolean actualResult = handler.writeFile(cities, FileHandler.CITY_NODES_DIR, FileHandler.CITY_NODES_HEADER);
+        boolean actualResult = handler.writeFile(cities, CITY_NODES_DIR, CITY_NODES_HEADER);
 
         assertThat(actualResult, equalTo(expectedResult));
     }
