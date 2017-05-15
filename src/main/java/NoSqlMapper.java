@@ -1,14 +1,11 @@
 
-import Entities.nosql.Author;
 import Entities.nosql.BookGraphEntity;
 import Entities.nosql.CityGraphEntity;
 import Entities.nosql.GeoLocation;
-import antlr.debug.Event;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.hibernate.SessionFactory;
 
 public class NoSqlMapper implements NoSqlMapperInterface {
 
