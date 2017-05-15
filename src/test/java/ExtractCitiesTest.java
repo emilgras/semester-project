@@ -28,9 +28,9 @@ public class ExtractCitiesTest {
     private static String[][] connections;
     
     private final String READ_DIR = "files/cities15000.txt";
-    private final String CITY_NODES_DIR = System.getProperty("user.dir") + "/files/city_nodes.csv";
-    private final String GEO_NODES_DIR = "files/geo_nodes.csv";
-    private final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
+    private static final String CITY_NODES_DIR = "files/city_nodes.csv";
+    private static final String GEO_NODES_DIR = "files/geo_nodes.csv";
+    private static final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
     private final String CITY_NODES_HEADER = "city_id,city\n";
     private final String GEO_NODES_HEADER = "geo_id,latitude,longitude\n";
     private final String CITY_GEO_EDGES_HEADER = "city_id,geo_id\n";
@@ -49,9 +49,9 @@ public class ExtractCitiesTest {
     @Ignore
     @AfterClass
     public static void tearDownClass() {
-        handler.removeFile(FileHandler.CITY_NODES_DIR);
-        handler.removeFile(FileHandler.GEO_NODES_DIR);
-        handler.removeFile(FileHandler.CITY_GEO_EDGES_DIR);
+        handler.removeFile(CITY_NODES_DIR);
+        handler.removeFile(GEO_NODES_DIR);
+        handler.removeFile(CITY_GEO_EDGES_DIR);
     }
 
     @Rule
