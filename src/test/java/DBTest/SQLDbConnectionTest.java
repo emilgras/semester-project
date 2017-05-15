@@ -3,35 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GraphDBTest;
+package DBTest;
 
-import Entities.nosql.AuthorGraphEntity;
+import Entities.sql.Author;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import org.junit.Ignore;
+
 /**
  *
  * @author abj
  */
-@Ignore
-public class DbConnectionTest {
+ @Ignore
+public class SQLDbConnectionTest {
     
-    public DbConnectionTest() {
+    private static EntityManagerFactory entityManagerFactory;
+
+    public SQLDbConnectionTest() {
+    
+    
     }
 
-      private static EntityManagerFactory entityManagerFactory;
-
-    @BeforeClass
+     @BeforeClass
     public static void setUpEntityManagerFactory() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("ogm-neo4j_LOCAL");
+        entityManagerFactory = Persistence.createEntityManagerFactory("pu_testDB");
     }
 
     @AfterClass
@@ -49,7 +50,7 @@ public class DbConnectionTest {
     entityManager.getTransaction().begin();
    
     // create an Author
-    AuthorGraphEntity bob = new AuthorGraphEntity( "Bob");
+    Author bob = new Author( "Bob");
     entityManager.persist( bob );
 
     entityManager.getTransaction().commit();
@@ -61,7 +62,7 @@ public class DbConnectionTest {
      // load it back
     entityManager.getTransaction().begin();
 
-    AuthorGraphEntity loadedAuthor = entityManager.find(AuthorGraphEntity.class, bob.getId() );
+    Author loadedAuthor = entityManager.find( Author.class, bob.getId() );
     assertNotNull(loadedAuthor);
     assertThat(loadedAuthor.getAuthorName(), equalTo("Bob"));
     entityManager.getTransaction().commit();
@@ -70,5 +71,4 @@ public class DbConnectionTest {
     
     }
     
-   
 }
