@@ -1,5 +1,4 @@
 
-import Entities.nosql.Author;
 import Entities.nosql.BookGraphEntity;
 import Entities.nosql.CityGraphEntity;
 import Entities.nosql.GeoLocation;
