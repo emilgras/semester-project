@@ -46,7 +46,6 @@ public class ExtractCitiesTest {
         connections = handler.extractConnectionsFromFile(file);
     }
 
-    @Ignore
     @AfterClass
     public static void tearDownClass() {
         handler.removeFile(CITY_NODES_DIR);

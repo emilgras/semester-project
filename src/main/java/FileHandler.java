@@ -138,9 +138,8 @@ public class FileHandler {
         return connections;
     }
 
-    // MARK: - Main
     public static void main(String[] args) {
-        FileHandler handler = new FileHandler();
+        //FileHandler handler = new FileHandler();
 
 //        // read file
 //        ArrayList<String> file = handler.readFile(FileHandler.READ_DIR);
@@ -160,19 +159,19 @@ public class FileHandler {
 //        System.out.println("FILE_REMOVED=" + removeResult);
 
         // Run this to create necessary CSV files
-        ArrayList<String> file = handler.readFile(FileHandler.READ_DIR);
-        
-        String[][] cities = handler.extractCitiesFromFile(file);
-        boolean writeResult1 = handler.writeFile(cities, FileHandler.CITY_NODES_DIR, FileHandler.CITY_NODES_HEADER);
-        System.out.println("FILE_CREATED=" + writeResult1);
-        
-        String[][] geolocations = handler.extractGeoLocationsFromFile(file);
-        boolean writeResult2 = handler.writeFile(geolocations, FileHandler.GEO_NODES_DIR, FileHandler.GEO_NODES_HEADER);
-        System.out.println("FILE_CREATED=" + writeResult2);
-        
-        String[][] connections = handler.extractConnectionsFromFile(file);
-        boolean writeResult3 = handler.writeFile(connections, FileHandler.CITY_GEO_EDGES_DIR, FileHandler.CITY_GEO_EDGES_HEADER);
-        System.out.println("FILE_CREATED=" + writeResult3);
+//        ArrayList<String> file = handler.readFile(FileHandler.READ_DIR);
+//
+//        String[][] cities = handler.extractCitiesFromFile(file);
+//        boolean writeResult1 = handler.writeFile(cities, FileHandler.CITY_NODES_DIR, FileHandler.CITY_NODES_HEADER);
+//        System.out.println("FILE_CREATED=" + writeResult1);
+//
+//        String[][] geolocations = handler.extractGeoLocationsFromFile(file);
+//        boolean writeResult2 = handler.writeFile(geolocations, FileHandler.GEO_NODES_DIR, FileHandler.GEO_NODES_HEADER);
+//        System.out.println("FILE_CREATED=" + writeResult2);
+//
+//        String[][] connections = handler.extractConnectionsFromFile(file);
+//        boolean writeResult3 = handler.writeFile(connections, FileHandler.CITY_GEO_EDGES_DIR, FileHandler.CITY_GEO_EDGES_HEADER);
+//        System.out.println("FILE_CREATED=" + writeResult3);
     }
 
 }
