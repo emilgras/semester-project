@@ -43,8 +43,7 @@ public class PersistenceManager {
             default:
                 break;
         }
-        
-    
+
     }
     
     public EntityManager getEntityManager(){
