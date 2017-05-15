@@ -73,15 +73,15 @@ public class FileHandler {
 
                 for (int j = 0; j < data[i].length; j++) {
                     if (j != data[i].length - 1) {
-                        csvRow += data[i][j];
+                        csvRow += data[i][j] + ",";
                     } else {
                         // this is the last column - we add a new line
                         csvRow += data[i][j] + "\n";
                     }
                 }
-                System.out.println("Writing csvRow to file!");
-                fileWriter.write(csvRow.getBytes());
             }
+            System.out.println("Writing csvRow to file!");
+            fileWriter.write(csvRow.getBytes());
             System.out.println("Closing fileWriter");
             fileWriter.close();
         } catch (Exception e) {

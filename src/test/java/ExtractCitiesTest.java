@@ -117,8 +117,10 @@ public class ExtractCitiesTest {
     @DisplayName("should return true if all files are created successfully")
     public void testWriteFile () {
         boolean expectedResult = true;
+
+        String newFileDir = "files/this_is_a_new_csv.csv";
         
-        boolean actualResult = handler.writeFile(cities, CITY_NODES_DIR, CITY_NODES_HEADER);
+        boolean actualResult = handler.writeFile(cities, newFileDir, CITY_NODES_HEADER);
 
         assertThat(actualResult, equalTo(expectedResult));
     }
