@@ -122,6 +122,9 @@ public class ExtractCitiesTest {
         
         boolean actualResult = handler.writeFile(cities, newFileDir, CITY_NODES_HEADER);
 
+        // Remove file when tested
+        handler.removeFile(newFileDir);
+
         assertThat(actualResult, equalTo(expectedResult));
     }
     
