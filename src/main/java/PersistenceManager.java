@@ -15,8 +15,12 @@ import javax.persistence.Persistence;
  * 
  * http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
  */
-public enum PersistenceManager {
-    INSTANCE;
+public class PersistenceManager {
+    public enum Database{
+    SQL,
+    LOCALSQL,
+    GRAPH
+    }
     /*
     Creating an EntityManagerFactory is a pretty expensive operation 
     and should be done once for the lifetime of the application
@@ -25,8 +29,21 @@ public enum PersistenceManager {
     private EntityManagerFactory emFactory;
     
     //Change db here
-    private PersistenceManager(){
-        emFactory = Persistence.createEntityManagerFactory("pu_localDB");
+    private PersistenceManager(Database db){
+        if (null != db) switch (db) {
+            case GRAPH:
+                emFactory = Persistence.createEntityManagerFactory("ogm-neo4j_LOCAL");
+                break;
+            case LOCALSQL:
+                emFactory = Persistence.createEntityManagerFactory("pu_localDB");
+                break;
+            case SQL:
+                emFactory = Persistence.createEntityManagerFactory("pu_testDB");
+                break;
+            default:
+                break;
+        }
+        
     }
     
     public EntityManager getEntityManager(){
