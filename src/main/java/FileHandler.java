@@ -57,7 +57,7 @@ public class FileHandler {
             // Does file exist? Else create
             File file = new File(dir);
             if (!file.exists()) {
-                System.out.println("File does not exist!");
+                System.out.println("File does not exist! - creating file: " + dir);
                 file.createNewFile();
             }
 
