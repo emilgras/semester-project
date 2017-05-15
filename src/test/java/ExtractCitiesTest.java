@@ -4,18 +4,17 @@
  * and open the template in the editor.
  */
 
-import java.util.ArrayList;
-import static org.hamcrest.CoreMatchers.equalTo;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Rule;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 /**
  *
@@ -29,30 +28,29 @@ public class ExtractCitiesTest {
     private static String[][] geolocations;
     private static String[][] connections;
     
-    private final String READ_DIR = "files/cities15000.txt";
-    private final String CITY_NODES_DIR = "files/city_nodes.csv";
-    private final String GEO_NODES_DIR = "files/geo_nodes.csv";
-    private final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
+    private static final String READ_DIR = "files/cities15000.txt";
+    private static final String CITY_NODES_DIR = "files/city_nodes.csv";
+    private static final String GEO_NODES_DIR = "files/geo_nodes.csv";
+    private static final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
     private final String CITY_NODES_HEADER = "city_id,city\n";
     private final String GEO_NODES_HEADER = "geo_id,latitude,longitude\n";
     private final String CITY_GEO_EDGES_HEADER = "city_id,geo_id\n";
     
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("BeforeClass - initializing FileHandler \n\t\t-------------------- \n");
+        System.out.println("BeforeClass ExtractCitiesTest - \n initializing FileHandler \n\t\t-------------------- \n");
         handler = new FileHandler();
-        System.out.println("BeforeClass - reading file and extracting data to use in tests \n\t\t-------------------- \n");
-        file = handler.readFile(FileHandler.READ_DIR);
+        file = handler.readFile(READ_DIR);
         cities = handler.extractCitiesFromFile(file);
         geolocations = handler.extractGeoLocationsFromFile(file);
         connections = handler.extractConnectionsFromFile(file);
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
-        handler.removeFile(FileHandler.CITY_NODES_DIR);
-        handler.removeFile(FileHandler.GEO_NODES_DIR);
-        handler.removeFile(FileHandler.CITY_GEO_EDGES_DIR);
+        handler.removeFile(CITY_NODES_DIR);
+        handler.removeFile(GEO_NODES_DIR);
+        handler.removeFile(CITY_GEO_EDGES_DIR);
     }
 
     @Rule
@@ -119,8 +117,12 @@ public class ExtractCitiesTest {
     @DisplayName("should return true if all files are created successfully")
     public void testWriteFile () {
         boolean expectedResult = true;
+
+        String[][] citiesSplit = Arrays.copyOfRange(cities, 0, 100);
+
         
-        boolean actualResult = handler.writeFile(cities, FileHandler.CITY_NODES_DIR, FileHandler.CITY_NODES_HEADER);
+        boolean actualResult = handler.writeFile(citiesSplit, CITY_NODES_DIR, CITY_NODES_HEADER);
+
 
         assertThat(actualResult, equalTo(expectedResult));
     }
