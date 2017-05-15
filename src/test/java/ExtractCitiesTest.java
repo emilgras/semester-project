@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 
-import java.util.ArrayList;
-import static org.hamcrest.CoreMatchers.equalTo;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Rule;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+
+import java.util.ArrayList;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 /**
  *
@@ -30,7 +28,7 @@ public class ExtractCitiesTest {
     private static String[][] connections;
     
     private final String READ_DIR = "files/cities15000.txt";
-    private final String CITY_NODES_DIR = "files/city_nodes.csv";
+    private final String CITY_NODES_DIR = System.getProperty("user.dir") + "/files/city_nodes.csv";
     private final String GEO_NODES_DIR = "files/geo_nodes.csv";
     private final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
     private final String CITY_NODES_HEADER = "city_id,city\n";
@@ -47,7 +45,8 @@ public class ExtractCitiesTest {
         geolocations = handler.extractGeoLocationsFromFile(file);
         connections = handler.extractConnectionsFromFile(file);
     }
-    
+
+    @Ignore
     @AfterClass
     public static void tearDownClass() {
         handler.removeFile(FileHandler.CITY_NODES_DIR);

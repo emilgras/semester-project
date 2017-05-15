@@ -1,10 +1,9 @@
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import static java.nio.file.StandardOpenOption.APPEND;
-import static java.nio.file.StandardOpenOption.CREATE;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -54,23 +53,35 @@ public class FileHandler {
 
     public boolean writeFile(String[][] data, String dir, String header) {
         try {
-            // add the header to csv
-            Files.write(Paths.get(dir), header.getBytes(), APPEND, CREATE);
+
+            // Does file exist? Else create
+            File file = new File(dir);
+            if (!file.exists()) {
+                System.out.println("File does not exist!");
+                file.createNewFile();
+            }
+
+            // Initialize writer
+            FileOutputStream fileWriter = new FileOutputStream(dir);
+
+            fileWriter.write(header.getBytes());
+
+            String csvRow = "";
+
             // add all the cities and geolocations
             for (int i = 0; i < data.length; i++) {
-                String row = "";
 
                 for (int j = 0; j < data[i].length; j++) {
                     if (j != data[i].length - 1) {
-                        row += data[i][j] + ",";
+                        csvRow += data[i][j];
                     } else {
                         // this is the last column - we add a new line
-                        row += data[i][j] + "\n";
+                        csvRow += data[i][j] + "\n";
                     }
                 }
-                //System.out.println("ROW: " + row);
-                Files.write(Paths.get(dir), row.getBytes(), APPEND, CREATE);
+                fileWriter.write(csvRow.getBytes());
             }
+            fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
