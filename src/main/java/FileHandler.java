@@ -57,9 +57,10 @@ public class FileHandler {
             // Does file exist? Else create
             File file = new File(dir);
             if (!file.exists()) {
-                System.out.println("File does not exist! - creating file: " + dir);
                 try {
+                    System.out.println("File does not exist! - creating file: " + dir);
                     file.createNewFile();
+                    System.out.println("Created file: " + dir);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -67,12 +68,15 @@ public class FileHandler {
 
             // Initialize writer
             FileOutputStream fileWriter = new FileOutputStream(dir);
+            System.out.println("Writer initialized");
 
-            fileWriter.write(header.getBytes());
+            System.out.println("Writing header in file");
+            fileWriter.write(header.getBytes("UTF-8"));
 
             String csvRow = "";
 
             // add all the cities and geolocations
+            System.out.println("Creating csv string");
             for (int i = 0; i < data.length; i++) {
 
                 for (int j = 0; j < data[i].length; j++) {
@@ -85,9 +89,9 @@ public class FileHandler {
                 }
             }
             System.out.println("Writing csvRow to file!");
-            fileWriter.write(csvRow.getBytes());
+            fileWriter.write(csvRow.getBytes("UTF-8"));
             System.out.println("Closing fileWriter");
-            fileWriter.close();
+            //fileWriter.close();
         } catch (Exception e) {
             System.out.println("writeFile error!");
             System.out.println(e);
