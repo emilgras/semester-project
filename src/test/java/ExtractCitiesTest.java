@@ -38,9 +38,8 @@ public class ExtractCitiesTest {
     
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("BeforeClass - initializing FileHandler \n\t\t-------------------- \n");
+        System.out.println("BeforeClass ExtractCitiesTest - \n initializing FileHandler \n\t\t-------------------- \n");
         handler = new FileHandler();
-        System.out.println("BeforeClass - reading file and extracting data to use in tests \n\t\t-------------------- \n");
         file = handler.readFile(READ_DIR);
         cities = handler.extractCitiesFromFile(file);
         geolocations = handler.extractGeoLocationsFromFile(file);

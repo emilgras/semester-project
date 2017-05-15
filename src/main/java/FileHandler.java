@@ -68,15 +68,12 @@ public class FileHandler {
 
             // Initialize writer
             FileOutputStream fileWriter = new FileOutputStream(dir);
-            System.out.println("Writer initialized");
 
-            System.out.println("Writing header in file");
             fileWriter.write(header.getBytes("UTF-8"));
 
             String csvRow = "";
 
             // add all the cities and geolocations
-            System.out.println("Creating csv string");
             for (int i = 0; i < data.length; i++) {
 
                 for (int j = 0; j < data[i].length; j++) {
@@ -88,13 +85,9 @@ public class FileHandler {
                     }
                 }
             }
-            System.out.println("Writing csvRow to file!");
             fileWriter.write(csvRow.getBytes("UTF-8"));
-            System.out.println("Closing fileWriter");
             //fileWriter.close();
         } catch (Exception e) {
-            System.out.println("writeFile error!");
-            System.out.println(e);
             e.printStackTrace();
             return false;
         }
