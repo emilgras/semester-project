@@ -79,6 +79,7 @@ public class FileHandler {
                         csvRow += data[i][j] + "\n";
                     }
                 }
+                System.out.println("Writing csvRow to file!");
                 fileWriter.write(csvRow.getBytes());
             }
             System.out.println("Closing fileWriter");
