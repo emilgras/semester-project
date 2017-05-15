@@ -58,7 +58,11 @@ public class FileHandler {
             File file = new File(dir);
             if (!file.exists()) {
                 System.out.println("File does not exist! - creating file: " + dir);
-                file.createNewFile();
+                try {
+                    file.createNewFile();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             // Initialize writer

@@ -16,7 +16,7 @@ import javax.persistence.Persistence;
  * http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
  */
 public class PersistenceManager {
-    public enum Database{
+       public enum Database{
     SQL,
     LOCALSQL,
     GRAPH
@@ -43,7 +43,7 @@ public class PersistenceManager {
             default:
                 break;
         }
-        
+
     }
     
     public EntityManager getEntityManager(){
