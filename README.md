@@ -19,8 +19,9 @@ Read more [here](https://github.com/hilleer/semester-project/wiki/Database-desig
 
 Read more [here](https://github.com/hilleer/semester-project/wiki/GUIDE:-How-to-Download-Gutenberg-Books)
 
+## 4. Virtual Machine Configuration & Infrastructure
 
-
+Read more [here](https://github.com/hilleer/semester-project/wiki/Virtual-Machine-Configuration-&-Infrastructure)
 
 
 
