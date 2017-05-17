@@ -14,7 +14,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import java.util.Set;
 
-
 public class FileSearch {
 
     public static void main(String[] args) {
@@ -48,8 +47,8 @@ public class FileSearch {
         //the path to where the folder you get from unzipping the metadata zip
         String folderPath = "C:\\Users\\Frederik\\Downloads\\cache\\epub";
         //the path to where teh csv is created
-        String csvPath ="C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV";
-        
+        String csvPath = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV";
+
         //headers to the csv
         String BookHeader = "book_id,title";
         String AuthorHeader = "author_id,author_name";
@@ -81,42 +80,42 @@ public class FileSearch {
                     for (File newChild : newDirectoryListing) {
                         if (newChild.getName().substring(newChild.getName().length() - 3, newChild.getName().length()).equals("rdf")) {
                             File file = new File(newPath + "\\" + newChild.getName());
-                            
+
                             //To see why the method returns an array of string arrays.
                             //see the method below
                             String[][] res = searcher.getTitleAndAuthorFromBook(file);
 
-                            //make 3 rows for the csv files.
+                            //make a row for the book.
                             String[] bookRow = new String[2];
-                            String[] authorRow = new String[2];
-                            String[] wroteRow = new String[2];
-                            
+
                             //assign bookID and bookTitle for later use
                             String bookID = res[0][0];
                             String bookTitle = res[2][0];
-                            
+
                             //make row and add it to the list
                             bookRow[0] = bookID;
                             bookRow[1] = bookTitle;
                             BookCSVData.add(bookRow);
-                            
+
                             //loop through the authors of 1 book.
                             for (String BookAuthor : res[1]) {
+                                //make rows for author and wrote
+                                String[] authorRow = new String[2];
+                                String[] wroteRow = new String[2];
                                 //get the authors id. returns null if author
                                 //do not yet have an id.
                                 String id = Authors.get(BookAuthor);
                                 //if null. assign id.
                                 if (id == null) {
-                                    Authors.put(BookAuthor, AuthorIDIndex+"");
+                                    Authors.put(BookAuthor, AuthorIDIndex + "");
                                     AuthorIDIndex++;
                                     id = Authors.get(BookAuthor);
+                                    //make row and add it to the list
+                                    authorRow[0] = id;
+                                    authorRow[1] = BookAuthor;
+                                    AuthorCSVData.add(authorRow);
                                 }
-                                
-                                //make row and add it to the list
-                                authorRow[0] = id;
-                                authorRow[1] = BookAuthor;
-                                AuthorCSVData.add(authorRow);
-                                
+
                                 //make row and add it to the list
                                 wroteRow[0] = id;
                                 wroteRow[1] = bookID;
@@ -125,7 +124,7 @@ public class FileSearch {
                         }
                     }
                 }
-                if(limit > 20){
+                if (limit > 20) {
                     break;
                 }
             }
@@ -133,22 +132,19 @@ public class FileSearch {
         String[][] BookArray = new String[BookCSVData.size()][2];
         String[][] AuthorArray = new String[AuthorCSVData.size()][2];
         String[][] WroteArray = new String[WroteCSVData.size()][2];
-        
+
         for (int i = 0; i < BookCSVData.size(); i++) {
-            BookArray[i]=BookCSVData.get(i);
+            BookArray[i] = BookCSVData.get(i);
         }
         for (int i = 0; i < AuthorCSVData.size(); i++) {
-            AuthorArray[i]=AuthorCSVData.get(i);
+            AuthorArray[i] = AuthorCSVData.get(i);
         }
         for (int i = 0; i < WroteCSVData.size(); i++) {
-            WroteArray[i]=WroteCSVData.get(i);
+            WroteArray[i] = WroteCSVData.get(i);
         }
-        
         fh.writeFile(BookArray, csvPath, BookHeader);
         fh.writeFile(AuthorArray, csvPath, AuthorHeader);
         fh.writeFile(WroteArray, csvPath, WroteHeader);
-        
-        
     }
 
     public static boolean containsString(File file, String searchString) {
@@ -172,33 +168,32 @@ public class FileSearch {
 
     public void findCitiesInFile(File file, ArrayList<String> cityNames) {
         HashMap<String, String> foundCities = new HashMap();
-        
+
         Scanner in = null;
         try {
             // try to read file
             in = new Scanner(new FileReader(file));
-            
+
             // we will map ALL words in a hashmap. Easy to search for cities later
             HashMap<String, String> wordMapping = new HashMap();
             while (in.hasNextLine()) {
-                
+
                 // read one line at a time
                 String line = in.nextLine();
-                
+
                 // split line into array of words
                 String[] columns = line.split(" ");
 
-                
                 for (String col : columns) {
                     // for every word remove special chars
                     String trimmed = col.replaceAll("[+.^:,;]", "").toLowerCase();
-                    
+
                     // map the word into the hashmap
                     wordMapping.put(trimmed, trimmed);
                 }
 
             }
-            
+
             // now let's search for all the cities mentioned in the book
             // we will loop through all 23+ thousands cities, and for every cityname
             for (String cityName : cityNames) {
@@ -208,21 +203,17 @@ public class FileSearch {
                     foundCities.put(cityName, cityName);
                 }
             }
-            
-            
-            
+
             System.out.println("book id: " + 2367);
-            
+
             // TODO: call method to get the unique id from this current book
-            
             FileHandler handler = new FileHandler();
             String[][] connections = new String[foundCities.size()][2];
             // convenience - print all found cities in the book
-            
-            
+
             int index = 0;
             for (String city : foundCities.keySet()) {
-                
+
                 int id = index + 1;
                 System.out.println(city + "," + id);
                 connections[index][0] = "" + id;
@@ -233,16 +224,13 @@ public class FileSearch {
             boolean result = handler.writeFile(connections, "files/book_city_edges.csv", "book_id,city_name\n");
             System.out.println("------ CSV DONE! ------- " + result);
 
-            
-            
-            
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 in.close();
             } catch (Exception e) {
-                /* ignore */ 
+                /* ignore */
             }
         }
 
@@ -251,7 +239,7 @@ public class FileSearch {
     public String[][] getTitleAndAuthorFromBook(File file) {
         //this method returns an array of string arrays, because its the easiest
         //way without having to make a specifc book class.
-        
+
         ArrayList<String> AuthorsList = new ArrayList();
         String Title = "";
         String BookID = "";
@@ -267,17 +255,18 @@ public class FileSearch {
                 AuthorsList.add(e.getElementsByTagName("pgterms:name").item(0).getTextContent());
             }
             Title = document.getElementsByTagName("dcterms:title").item(0).getTextContent();
+            Title = Title.replace("\n", ": ").replace("\r", "");;
 
             BookID = file.getName().substring(2, file.getName().length() - 4);
 
         } catch (Exception e) {
-            
+
         }
         String[] AuthorsA = new String[AuthorsList.size()];
         for (int i = 0; i < AuthorsList.size(); i++) {
             AuthorsA[i] = AuthorsList.get(i);
         }
-        
+
         String[] TitleA = {Title};
         String[] BookIDA = {BookID};
         String[][] res = {BookIDA, AuthorsA, TitleA};
