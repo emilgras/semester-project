@@ -1,26 +1,69 @@
 
+import Entities.nosql.BookGraphEntity;
+import Entities.nosql.CityGraphEntity;
+import Entities.nosql.GeoLocation;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-public class NoSqlMapper implements MapperInterface{
+public class NoSqlMapper implements NoSqlMapperInterface {
 
-    @Override
-    public List<String> getAllCitiesByBookTitle(String bookTitle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private EntityManagerFactory sessionFactory;
+    private EntityManager entityManager;
+
+    public NoSqlMapper() {
+        sessionFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+        entityManager = sessionFactory.createEntityManager();
     }
 
     @Override
-    public List<String> getAuthorsByCityName(String cityName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<BookGraphEntity> getBooksMentioningCity(String cityName) {
+        String getBooksMentioningCityQuery = "MATCH (b:Book)-[:MENTIONS]->(c:City) WHERE b.cityName = '" + cityName + "' RETURN b";
+        entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<BookGraphEntity> result = entityManager.createNativeQuery(getBooksMentioningCityQuery).getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        
+        for (BookGraphEntity city : result) {
+            System.out.println("City: " + city);
+        }
+        
+        return result;
     }
 
     @Override
-    public List<String> getAllBooksWrittenByAuthor(String author) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<CityGraphEntity> getAllCitiesByBookTitle(String bookTitle) {
+        String getAllCitiesByBookTitleQuery = "MATCH (c:City)<-[:MENTIONS]-(b:book) WHERE b.title = '" + bookTitle + "' RETURN c";
+        entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<CityGraphEntity> result = entityManager.createNativeQuery(getAllCitiesByBookTitleQuery).getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return result;
     }
 
     @Override
-    public List<String> getBooksMentioningCity(String cityName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<BookGraphEntity> getAllBooksWrittenByAuthor(String author) {
+        String getAllBooksWrittenByAuthorQuery = "MATCH (b:Book)<-[:WROTE]-(a:Author) WHERE a.name = '" + author + "' RETURN b";
+        entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<BookGraphEntity> result = entityManager.createNativeQuery(getAllBooksWrittenByAuthorQuery).getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return result;
     }
-    
+
+    @Override
+    public List<BookGraphEntity> getAuthorsByCityName(GeoLocation geo) {
+        String getAuthorsByCityNameQuery = "MATCH (b:Books)-[:MENTIONS]-(c:City)-[]";
+        entityManager = sessionFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<BookGraphEntity> result = entityManager.createNativeQuery(getAuthorsByCityNameQuery).getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return result;
+    }
+
 }
