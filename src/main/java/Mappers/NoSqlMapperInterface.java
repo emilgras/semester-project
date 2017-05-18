@@ -1,3 +1,4 @@
+package Mappers;
 
 import Entities.nosql.BookGraphEntity;
 import Entities.nosql.CityGraphEntity;

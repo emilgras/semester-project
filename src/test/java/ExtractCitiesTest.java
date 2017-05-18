@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Utilities.FileHandler;
 import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.rules.TestRule;
@@ -38,7 +39,7 @@ public class ExtractCitiesTest {
     
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("BeforeClass ExtractCitiesTest - \n initializing FileHandler \n\t\t-------------------- \n");
+        System.out.println("BeforeClass ExtractCitiesTest - \n initializing Utilities.FileHandler \n\t\t-------------------- \n");
         handler = new FileHandler();
         file = handler.readFile(READ_DIR);
         cities = handler.extractCitiesFromFile(file);

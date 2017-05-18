@@ -1,18 +1,17 @@
+package Utilities;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Scanner;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import java.util.Set;
 
 public class FileSearch {
 
@@ -20,14 +19,14 @@ public class FileSearch {
 //        // Testing only
 //        File file = new File("C:\\Cphbusiness - PBA\\test-data-semester-project\\semester-project\\src\\main\\java\\book1.txt");
 //        String city = "søborg";
-//        System.out.printf("Result of searching for %s in %s was %b\n", city, file.getName(), FileSearch.containsString(file, city));
+//        System.out.printf("Result of searching for %s in %s was %b\n", city, file.getName(), Utilities.FileSearch.containsString(file, city));
 
         FileSearch searcher = new FileSearch();
-//        FileHandler handler = new FileHandler();
+//        Utilities.FileHandler handler = new Utilities.FileHandler();
 //
 //        File file = new File("files/1.txt");
 //
-//        ArrayList<String> fileRead = handler.readFile(FileHandler.READ_DIR);
+//        ArrayList<String> fileRead = handler.readFile(Utilities.FileHandler.READ_DIR);
 //        String[][] cities = handler.extractCitiesFromFile(fileRead);
 //
 //        ArrayList<String> citiesList = new ArrayList();

@@ -1,3 +1,4 @@
+import Utilities.FileSearch;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class FileSearchTest {
 
     @BeforeClass
     public static void beforeClass () {
-        System.out.println("BeforeClass - initializing FileSearch \n\t\t-------------------- \n");
+        System.out.println("BeforeClass - initializing Utilities.FileSearch \n\t\t-------------------- \n");
         fileSearch = new FileSearch();
     }
 

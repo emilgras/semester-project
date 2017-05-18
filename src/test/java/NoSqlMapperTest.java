@@ -1,6 +1,7 @@
 import Entities.nosql.BookGraphEntity;
 import Entities.nosql.CityGraphEntity;
 import Entities.nosql.GeoLocation;
+import Mappers.NoSqlMapper;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Rule;

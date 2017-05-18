@@ -1,3 +1,6 @@
+package Mappers;
+
+import Utilities.FileSearch;
 
 
 import java.io.File;
@@ -6,8 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SqlMapper implements SqlMapperInterface{
-
+public class SqlMapper implements SqlMapperInterface {
 
     public List<String> getAllCitiesByBookTitle(String bookTitle) {
         
