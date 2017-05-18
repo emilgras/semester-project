@@ -2,6 +2,7 @@ import Entities.nosql.BookGraphEntity;
 import Entities.nosql.CityGraphEntity;
 import Entities.nosql.GeoLocation;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +16,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@Ignore
 public class NoSqlMapperTest {
 
     static NoSqlMapper mapper;
