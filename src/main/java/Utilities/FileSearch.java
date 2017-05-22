@@ -307,17 +307,6 @@ public class FileSearch {
             executor.shutdown();
             while (!executor.isTerminated()) {
             }
-//            for (File file : directoryListing) {
-//                if (file.getName().substring(file.getName().length() - 4, file.getName().length()).equals(".txt")) {
-//                    String bookID = file.getName().substring(0, file.getName().length() - 4);
-//                    HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
-//                    for (String s : foundCities.keySet()) {
-//                        String cityID = cityToKey.get(s);
-//                        String[] row = {bookID, cityID};
-//                        dataToCSV.add(row);
-//                    }
-//                }
-//            }
         }
         String[][] dataToCSVArray = new String[dataToCSV.size()][2];
         for (int i = 0; i < dataToCSV.size(); i++) {
