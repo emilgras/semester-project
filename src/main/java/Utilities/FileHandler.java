@@ -25,9 +25,9 @@ public class FileHandler {
     static final String GEO_NODES_DIR = "files/geo_nodes.csv";
     static final String CITY_GEO_EDGES_DIR = "files/city_geo_edges.csv";
 
-    static final String CITY_NODES_HEADER = "city_id,city\n";
-    static final String GEO_NODES_HEADER = "geo_id,latitude,longitude\n";
-    static final String CITY_GEO_EDGES_HEADER = "city_id,geo_id\n";
+    static final String CITY_NODES_HEADER = "city_id|city\n";
+    static final String GEO_NODES_HEADER = "geo_id|latitude,longitude\n";
+    static final String CITY_GEO_EDGES_HEADER = "city_id|geo_id\n";
     
     // MARK: - Private Constants
     private final String DELIMITER = "\t";
@@ -79,7 +79,7 @@ public class FileHandler {
 
                 for (int j = 0; j < data[i].length; j++) {
                     if (j != data[i].length - 1) {
-                        csvRow += data[i][j] + ",";
+                        csvRow += data[i][j] + "|";
                     } else {
                         // this is the last column - we add a new line
                         csvRow += data[i][j] + "\n";
@@ -142,20 +142,20 @@ public class FileHandler {
     }
 
     public static void main(String[] args) {
-        //Utilities.FileHandler handler = new Utilities.FileHandler();
+        Utilities.FileHandler handler = new Utilities.FileHandler();
 
-//        // read file
-//        ArrayList<String> file = handler.readFile(Utilities.FileHandler.READ_DIR);
-//        System.out.println("FILE SIZE=" + file.size() + "\n\n");
-//
-//        // extract cities
-//        String[][] cities = handler.extractCitiesFromFile(file);
-//        System.out.println("CITY_ROWS=" + cities.length + ", CITY_CLUMNS=" + cities[0].length);
-//        System.out.println("FIRST ROW=" + cities[0][0] + "," + cities[0][1]);
+        // read file
+        ArrayList<String> file = handler.readFile(Utilities.FileHandler.READ_DIR);
+        System.out.println("FILE SIZE=" + file.size() + "\n\n");
+
+        // extract cities
+        String[][] cities = handler.extractCitiesFromFile(file);
+        System.out.println("CITY_ROWS=" + cities.length + ", CITY_CLUMNS=" + cities[0].length);
+        System.out.println("FIRST ROW=" + cities[0][0] + "," + cities[0][1]);
 //        
-//        // write file to csv format
-//        boolean writeResult = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, Utilities.FileHandler.CITY_NODES_HEADER);
-//        System.out.println("FILE_CREATED=" + writeResult);
+        // write file to csv format
+        boolean writeResult = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, Utilities.FileHandler.CITY_NODES_HEADER);
+        System.out.println("FILE_CREATED=" + writeResult);
 //        
 //        // delete file
 //        boolean removeResult = handler.removeFile(Utilities.FileHandler.CITY_NODES_DIR);
