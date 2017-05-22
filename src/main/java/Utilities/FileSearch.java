@@ -24,7 +24,8 @@ public class FileSearch {
     static FileSearch fs = new FileSearch();
 
     public static void main(String[] args) {
-        fs.createCSVCityMentions("C:\\Users\\Frederik\\Desktop\\5bøger");
+        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
+        fs.createCSVCityMentions(path);
     }
 
     public static boolean containsString(File file, String searchString) {
@@ -284,42 +285,45 @@ public class FileSearch {
         }
 
         if (directoryListing != null) {
-//            while (!files.isEmpty()) {
-//                Thread t = new Thread() {
-//                    @Override
-//                    public void run() {
-//                        File file = files.poll();
-//                        System.out.println(file.getName());
-//                        String bookID = file.getName().substring(0, file.getName().length() - 4);
-//                        HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
-//                        for (String s : foundCities.keySet()) {
-//                            String cityID = cityToKey.get(s);
-//                            String[] row = {bookID, cityID};
-//                            dataToCSV.add(row);
-//                        }
-//                        System.out.println(files.size());
-//                        System.out.println(files.isEmpty());
-//                    }
-//                };
-//                executor.execute(t);
-//            }
-            for (File file : directoryListing) {
-                if (file.getName().substring(file.getName().length() - 4, file.getName().length()).equals(".txt")) {
-                    String bookID = file.getName().substring(0, file.getName().length() - 4);
-                    HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
-                    for (String s : foundCities.keySet()) {
-                        String cityID = cityToKey.get(s);
-                        String[] row = {bookID, cityID};
-                        dataToCSV.add(row);
+            while (!files.isEmpty()) {
+                Thread t = new Thread() {
+                    @Override
+                    public void run() {
+                        File file = files.poll();
+                        if (file != null) {
+                            System.out.println(file.getName());
+                            String bookID = file.getName().substring(0, file.getName().length() - 4);
+                            HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
+                            for (String s : foundCities.keySet()) {
+                                String cityID = cityToKey.get(s);
+                                String[] row = {bookID, cityID};
+                                dataToCSV.add(row);
+                            }
+                        }
                     }
-                }
+                };
+                executor.execute(t);
             }
+            executor.shutdown();
+            while (!executor.isTerminated()) {
+            }
+//            for (File file : directoryListing) {
+//                if (file.getName().substring(file.getName().length() - 4, file.getName().length()).equals(".txt")) {
+//                    String bookID = file.getName().substring(0, file.getName().length() - 4);
+//                    HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
+//                    for (String s : foundCities.keySet()) {
+//                        String cityID = cityToKey.get(s);
+//                        String[] row = {bookID, cityID};
+//                        dataToCSV.add(row);
+//                    }
+//                }
+//            }
         }
         String[][] dataToCSVArray = new String[dataToCSV.size()][2];
         for (int i = 0; i < dataToCSV.size(); i++) {
             String[] s = dataToCSV.get(i);
             dataToCSVArray[i] = s;
         }
-        fh.writeFile(dataToCSVArray, "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv", "book_id|city_id\n");
+        fh.writeFile(dataToCSVArray, folderPath, "book_id|city_id\n");
     }
 }
