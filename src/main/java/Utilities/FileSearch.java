@@ -24,8 +24,10 @@ public class FileSearch {
     static FileSearch fs = new FileSearch();
 
     public static void main(String[] args) {
-        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
-        fs.createCSVCityMentions(path);
+//        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
+        String pathFrom = "/Users/emilgras/Desktop/Books/test/";
+        String pathTo = "files/mentions.csv";
+        fs.createCSVCityMentions(pathFrom, pathTo);
     }
 
     public static boolean containsString(File file, String searchString) {
@@ -258,7 +260,7 @@ public class FileSearch {
         fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
     }
 
-    public void createCSVCityMentions(String folderPath) {
+    public void createCSVCityMentions(String folderPath, String pathTo) {
         File dir = new File(folderPath);
         File[] directoryListing = dir.listFiles();
         ArrayList<String> fileRead = fh.readFile(Utilities.FileHandler.READ_DIR);
@@ -313,6 +315,6 @@ public class FileSearch {
             String[] s = dataToCSV.get(i);
             dataToCSVArray[i] = s;
         }
-        fh.writeFile(dataToCSVArray, folderPath, "book_id|city_id\n");
+        fh.writeFile(dataToCSVArray, pathTo, "book_id|city_id\n");
     }
 }
