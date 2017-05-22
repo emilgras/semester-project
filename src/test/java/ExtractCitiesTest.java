@@ -122,7 +122,7 @@ public class ExtractCitiesTest {
         String[][] citiesSplit = Arrays.copyOfRange(cities, 0, 100);
 
         
-        boolean actualResult = handler.writeFile(citiesSplit, CITY_NODES_DIR, CITY_NODES_HEADER);
+        boolean actualResult = handler.writeFile(citiesSplit, CITY_NODES_DIR, false, CITY_NODES_HEADER);
 
 
         assertThat(actualResult, equalTo(expectedResult));
