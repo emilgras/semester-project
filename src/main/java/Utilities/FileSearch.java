@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,8 +26,10 @@ public class FileSearch {
     static FileSearch fs = new FileSearch();
 
     public static void main(String[] args) {
-        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
-        fs.createCSVCityMentions(path);
+//        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
+        String from = "/Users/emilgras/Desktop/Books/zipfiles/";
+        String to = "files/mentions.csv";
+        fs.createCSVCityMentions(from, to);
     }
 
     public static boolean containsString(File file, String searchString) {
@@ -47,8 +51,10 @@ public class FileSearch {
         return result;
     }
 
-    public HashMap<String, String> findCitiesInFile(File file, ArrayList<String> cityNames) {
-        HashMap<String, String> foundCities = new HashMap();
+    public Set<String> findCitiesInFile(File file, ArrayList<String> cityNames) {
+//        HashMap<String, String> foundCities = new HashMap();
+
+        Set<String> foundCities = new HashSet();
 
         Scanner in = null;
         try {
@@ -56,7 +62,9 @@ public class FileSearch {
             in = new Scanner(new FileReader(file));
 
             // we will map ALL words in a hashmap. Easy to search for cities later
-            HashMap<String, String> wordMapping = new HashMap();
+//            HashMap<String, String> wordMapping = new HashMap();
+            Set<String> wordMapping = new HashSet();
+
             while (in.hasNextLine()) {
 
                 // read one line at a time
@@ -67,10 +75,10 @@ public class FileSearch {
 
                 for (String col : columns) {
                     // for every word remove special chars
-                    String trimmed = col.replaceAll("[+.^:,;]", "").toLowerCase();
+                    String trimmed = col.replaceAll("[+.^:,;]", "");
 
                     // map the word into the hashmap
-                    wordMapping.put(trimmed, trimmed);
+                    wordMapping.add(trimmed);
                 }
 
             }
@@ -79,31 +87,30 @@ public class FileSearch {
             // we will loop through all 23+ thousands cities, and for every cityname
             for (String cityName : cityNames) {
                 // if the current city is mentioned in the word hashmap, then
-                if (wordMapping.containsKey(cityName.toLowerCase())) {
+                if (wordMapping.contains(cityName)) {
                     // add it to the final found cities map
-                    foundCities.put(cityName, cityName);
+                    foundCities.add(cityName.toLowerCase());
                 }
             }
 
             //System.out.println("book id: " + 2367);
             // TODO: call method to get the unique id from this current book
-            FileHandler handler = new FileHandler();
-            String[][] connections = new String[foundCities.size()][2];
-            // convenience - print all found cities in the book
-
-            int index = 0;
-            for (String city : foundCities.keySet()) {
-
-                int id = index + 1;
-                //System.out.println(city + "," + id);
-                connections[index][0] = "" + id;
-                connections[index][1] = city;
-                index++;
-            }
-            //System.out.println("SIZE: " + connections.length);
-            boolean result = handler.writeFile(connections, "files/book_city_edges.csv", "book_id,city_name\n");
-            //System.out.println("------ CSV DONE! ------- " + result);
-
+//            FileHandler handler = new FileHandler();
+//            String[][] connections = new String[foundCities.size()][2];
+//            // convenience - print all found cities in the book
+//
+//            int index = 0;
+//            for (String city : foundCities) {
+//
+//                int id = index + 1;
+//                //System.out.println(city + "," + id);
+//                connections[index][index] = "" + id;
+//                connections[index][1] = city;
+//                index++;
+//            }
+//            //System.out.println("SIZE: " + connections.length);
+//            boolean result = handler.writeFile(connections, "files/book_city_edges.csv", "book_id,city_name\n");
+//            //System.out.println("------ CSV DONE! ------- " + result);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -258,13 +265,15 @@ public class FileSearch {
         fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
     }
 
-    public void createCSVCityMentions(String folderPath) {
-        File dir = new File(folderPath);
+    ArrayList<String[]> dataToCSV = null;
+    
+    public void createCSVCityMentions(String from, String to) {
+        File dir = new File(from);
         File[] directoryListing = dir.listFiles();
         ArrayList<String> fileRead = fh.readFile(Utilities.FileHandler.READ_DIR);
         String[][] cities = fh.extractCitiesFromFile(fileRead);
-        ArrayList<String[]> dataToCSV = new ArrayList<>();
-        ExecutorService executor = Executors.newFixedThreadPool(5);
+        dataToCSV = new ArrayList<>();
+        ExecutorService executor = Executors.newFixedThreadPool(6);
 
         Queue<File> files = new ArrayDeque();
         for (File file : directoryListing) {
@@ -291,28 +300,47 @@ public class FileSearch {
                     public void run() {
                         File file = files.poll();
                         if (file != null) {
-                            System.out.println(file.getName());
+
                             String bookID = file.getName().substring(0, file.getName().length() - 4);
-                            HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
-                            for (String s : foundCities.keySet()) {
+                            Set<String> foundCities = fs.findCitiesInFile(file, citiesList);
+                            for (String s : foundCities) {
                                 String cityID = cityToKey.get(s);
                                 String[] row = {bookID, cityID};
                                 dataToCSV.add(row);
                             }
+
+                            if (files.size() % 100 == 0) {
+                                System.out.println("Status: 100 books done!");
+                            }
+
+                            if (files.size() % 1000 == 0) {
+                                write(to);
+                            }
+
                         }
                     }
                 };
+
                 executor.execute(t);
             }
             executor.shutdown();
-            while (!executor.isTerminated()) {
+            String[][] dataToCSVArray = new String[dataToCSV.size()][2];
+            for (int i = 0; i < dataToCSV.size(); i++) {
+                String[] s = dataToCSV.get(i);
+                dataToCSVArray[i] = s;
             }
+            fh.writeFile(dataToCSVArray, to, "book_id|city_id\n");
         }
+
+    }
+
+    private void write(String to) {
         String[][] dataToCSVArray = new String[dataToCSV.size()][2];
         for (int i = 0; i < dataToCSV.size(); i++) {
             String[] s = dataToCSV.get(i);
             dataToCSVArray[i] = s;
         }
-        fh.writeFile(dataToCSVArray, folderPath, "book_id|city_id\n");
+        fh.writeFile(dataToCSVArray, to, "book_id|city_id\n");
+        System.out.println("Committed 1000 books to file");
     }
 }
