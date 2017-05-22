@@ -25,10 +25,11 @@ public class FileSearch {
 
     public static void main(String[] args) {
 //        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
-        String pathFrom = "/Users/emilgras/Desktop/Books/zipfiles/";
-        String pathTo = "files/mentions.csv";
-        fs.createCSVCityMentions(pathFrom, pathTo);
-    }
+//        String pathFrom = "/Users/emilgras/Desktop/Books/zipfiles/";
+//        String pathTo = "files/mentions.csv";
+//        fs.createCSVCityMentions(pathFrom, pathTo);
+//        fs.createCSVFromMeta("files/", "/Users/emilgras/Downloads/cache/epub");
+    }   
 
     public static boolean containsString(File file, String searchString) {
         boolean result = false;

@@ -148,13 +148,13 @@ public class FileHandler {
         Utilities.FileHandler handler = new Utilities.FileHandler();
 
         // read file
-        ArrayList<String> file = handler.readFile(Utilities.FileHandler.READ_DIR);
-        System.out.println("FILE SIZE=" + file.size() + "\n\n");
+//        ArrayList<String> file = handler.readFile(Utilities.FileHandler.READ_DIR);
+//        System.out.println("FILE SIZE=" + file.size() + "\n\n");
 
         // extract cities
-        String[][] cities = handler.extractCitiesFromFile(file);
-        System.out.println("CITY_ROWS=" + cities.length + ", CITY_CLUMNS=" + cities[0].length);
-        System.out.println("FIRST ROW=" + cities[0][0] + "," + cities[0][1]);
+//        String[][] cities = handler.extractCitiesFromFile(file);
+//        System.out.println("CITY_ROWS=" + cities.length + ", CITY_CLUMNS=" + cities[0].length);
+//        System.out.println("FIRST ROW=" + cities[0][0] + "," + cities[0][1]);
 //        
         // write file to csv format
 //        boolean writeResult = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, Utilities.FileHandler.CITY_NODES_HEADER);
@@ -168,15 +168,15 @@ public class FileHandler {
 //        ArrayList<String> file = handler.readFile(Utilities.FileHandler.READ_DIR);
 //
 //        String[][] cities = handler.extractCitiesFromFile(file);
-//        boolean writeResult1 = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, Utilities.FileHandler.CITY_NODES_HEADER);
+//        boolean writeResult1 = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, false, Utilities.FileHandler.CITY_NODES_HEADER);
 //        System.out.println("FILE_CREATED=" + writeResult1);
 //
 //        String[][] geolocations = handler.extractGeoLocationsFromFile(file);
-//        boolean writeResult2 = handler.writeFile(geolocations, Utilities.FileHandler.GEO_NODES_DIR, Utilities.FileHandler.GEO_NODES_HEADER);
+//        boolean writeResult2 = handler.writeFile(geolocations, Utilities.FileHandler.GEO_NODES_DIR, false, Utilities.FileHandler.GEO_NODES_HEADER);
 //        System.out.println("FILE_CREATED=" + writeResult2);
 //
 //        String[][] connections = handler.extractConnectionsFromFile(file);
-//        boolean writeResult3 = handler.writeFile(connections, Utilities.FileHandler.CITY_GEO_EDGES_DIR, Utilities.FileHandler.CITY_GEO_EDGES_HEADER);
+//        boolean writeResult3 = handler.writeFile(connections, Utilities.FileHandler.CITY_GEO_EDGES_DIR, false, Utilities.FileHandler.CITY_GEO_EDGES_HEADER);
 //        System.out.println("FILE_CREATED=" + writeResult3);
     }
 
