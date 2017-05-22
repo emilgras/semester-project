@@ -52,7 +52,7 @@ public class FileHandler {
         return lines;
     }
 
-    public boolean writeFile(String[][] data, String dir, String header) {
+    public boolean writeFile(String[][] data, String dir, boolean withHeader, String header) {
         try {
 
             // Does file exist? Else create
@@ -68,9 +68,12 @@ public class FileHandler {
             }
 
             // Initialize writer
-            FileOutputStream fileWriter = new FileOutputStream(dir);
-
-            fileWriter.write(header.getBytes("UTF-8"));
+            FileOutputStream fileWriter = new FileOutputStream(dir, true);
+            
+            if(withHeader) {
+                fileWriter.write(header.getBytes("UTF-8"));
+            }
+            
 
             String csvRow = "";
 
@@ -154,8 +157,8 @@ public class FileHandler {
         System.out.println("FIRST ROW=" + cities[0][0] + "," + cities[0][1]);
 //        
         // write file to csv format
-        boolean writeResult = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, Utilities.FileHandler.CITY_NODES_HEADER);
-        System.out.println("FILE_CREATED=" + writeResult);
+//        boolean writeResult = handler.writeFile(cities, Utilities.FileHandler.CITY_NODES_DIR, Utilities.FileHandler.CITY_NODES_HEADER);
+//        System.out.println("FILE_CREATED=" + writeResult);
 //        
 //        // delete file
 //        boolean removeResult = handler.removeFile(Utilities.FileHandler.CITY_NODES_DIR);
