@@ -95,6 +95,7 @@ public class FileSearch {
 
             //System.out.println("book id: " + 2367);
             // TODO: call method to get the unique id from this current book
+
 //            FileHandler handler = new FileHandler();
 //            String[][] connections = new String[foundCities.size()][2];
 //            // convenience - print all found cities in the book
@@ -111,6 +112,7 @@ public class FileSearch {
 //            //System.out.println("SIZE: " + connections.length);
 //            boolean result = handler.writeFile(connections, "files/book_city_edges.csv", "book_id,city_name\n");
 //            //System.out.println("------ CSV DONE! ------- " + result);
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -260,11 +262,10 @@ public class FileSearch {
         for (int i = 0; i < WroteCSVData.size(); i++) {
             WroteArray[i] = WroteCSVData.get(i);
         }
-        fh.writeFile(BookArray, csvPath + "\\books.csv", BookHeader);
-        fh.writeFile(AuthorArray, csvPath + "\\authors.csv", AuthorHeader);
-        fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
+//        fh.writeFile(BookArray, csvPath + "\\books.csv", BookHeader);
+//        fh.writeFile(AuthorArray, csvPath + "\\authors.csv", AuthorHeader);
+//        fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
     }
-
     ArrayList<String[]> dataToCSV = null;
     
     public void createCSVCityMentions(String from, String to) {
@@ -293,8 +294,12 @@ public class FileSearch {
             citiesList.add(cityName);
         }
 
+        System.out.println("STARTING PROCEDURE...");
+        System.out.println("Number of books: " + directoryListing.length);
+        int count = 0;
         if (directoryListing != null) {
             while (!files.isEmpty()) {
+
                 Thread t = new Thread() {
                     @Override
                     public void run() {
@@ -317,6 +322,14 @@ public class FileSearch {
                                 write(to);
                             }
 
+
+                            String[][] dataToCSVArray = new String[dataToCSV.size()][2];
+                            for (int i = 0; i < dataToCSV.size(); i++) {
+                                String[] s = dataToCSV.get(i);
+                                dataToCSVArray[i] = s;
+                            }
+                            fh.writeFile(dataToCSVArray, pathTo, false, "book_id|city_id\n");
+                            System.out.println("Finsihed one book number - remaining " + files.size());
                         }
                     }
                 };
@@ -331,7 +344,6 @@ public class FileSearch {
             }
             fh.writeFile(dataToCSVArray, to, "book_id|city_id\n");
         }
-
     }
 
     private void write(String to) {
