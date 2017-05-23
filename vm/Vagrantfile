@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
     # vb.gui = true
 
     # Customize the amount of memory on the VM:
-    vb.memory = "2048"
+    vb.memory = "6140"
     vb.cpus = "2"
     vb.name = "dbdev_oi_exam"
   end
@@ -125,7 +125,12 @@ Vagrant.configure("2") do |config|
 
     sudo chmod a+rw -R /var/log/neo4j
     sudo chmod a+rw -R /var/lib/neo4j
-
+	
+	sudo mkdir /var/run/neo4j 
+    sudo touch /var/run/neo4j/neo4j.pid 
+    sudo chmod 666 /var/run/neo4j/neo4j.pid
+	
+	
     sudo neo4j restart
 
     sudo /usr/bin/neo4j-admin set-initial-password class
@@ -147,6 +152,9 @@ Vagrant.configure("2") do |config|
 	
 	sudo mv ./mentions.csv /var/lib/neo4j/import
 	
+	sudo mv ./geolocations.csv /var/lib/neo4j/import
+	
+	sudo mv ./city_geo.csv /var/lib/neo4j/import
 	
     # I do not know why I moved earlier to /usr/share/neo4j/import/
 	
