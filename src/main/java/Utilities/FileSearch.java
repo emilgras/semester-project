@@ -24,9 +24,12 @@ public class FileSearch {
     static FileSearch fs = new FileSearch();
 
     public static void main(String[] args) {
-        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
-        fs.createCSVCityMentions(path);
-    }
+//        String path = "C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\mentions.csv";
+//        String pathFrom = "/Users/emilgras/Desktop/Books/zipfiles/";
+//        String pathTo = "files/mentions.csv";
+//        fs.createCSVCityMentions(pathFrom, pathTo);
+//        fs.createCSVFromMeta("files/", "/Users/emilgras/Downloads/cache/epub");
+    }   
 
     public static boolean containsString(File file, String searchString) {
         boolean result = false;
@@ -101,7 +104,7 @@ public class FileSearch {
                 index++;
             }
             //System.out.println("SIZE: " + connections.length);
-            boolean result = handler.writeFile(connections, "files/book_city_edges.csv", "book_id,city_name\n");
+            boolean result = handler.writeFile(connections, "files/book_city_edges.csv", true, "book_id,city_name\n");
             //System.out.println("------ CSV DONE! ------- " + result);
 
         } catch (IOException e) {
@@ -253,12 +256,12 @@ public class FileSearch {
         for (int i = 0; i < WroteCSVData.size(); i++) {
             WroteArray[i] = WroteCSVData.get(i);
         }
-        fh.writeFile(BookArray, csvPath + "\\books.csv", BookHeader);
-        fh.writeFile(AuthorArray, csvPath + "\\authors.csv", AuthorHeader);
-        fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
+//        fh.writeFile(BookArray, csvPath + "\\books.csv", BookHeader);
+//        fh.writeFile(AuthorArray, csvPath + "\\authors.csv", AuthorHeader);
+//        fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
     }
 
-    public void createCSVCityMentions(String folderPath) {
+    public void createCSVCityMentions(String folderPath, String pathTo) {
         File dir = new File(folderPath);
         File[] directoryListing = dir.listFiles();
         ArrayList<String> fileRead = fh.readFile(Utilities.FileHandler.READ_DIR);
@@ -284,14 +287,17 @@ public class FileSearch {
             citiesList.add(cityName);
         }
 
+        System.out.println("STARTING PROCEDURE...");
+        System.out.println("Number of books: " + directoryListing.length);
+        int count = 0;
         if (directoryListing != null) {
             while (!files.isEmpty()) {
+
                 Thread t = new Thread() {
                     @Override
                     public void run() {
                         File file = files.poll();
                         if (file != null) {
-                            System.out.println(file.getName());
                             String bookID = file.getName().substring(0, file.getName().length() - 4);
                             HashMap<String, String> foundCities = fs.findCitiesInFile(file, citiesList);
                             for (String s : foundCities.keySet()) {
@@ -299,20 +305,24 @@ public class FileSearch {
                                 String[] row = {bookID, cityID};
                                 dataToCSV.add(row);
                             }
+
+                            String[][] dataToCSVArray = new String[dataToCSV.size()][2];
+                            for (int i = 0; i < dataToCSV.size(); i++) {
+                                String[] s = dataToCSV.get(i);
+                                dataToCSVArray[i] = s;
+                            }
+                            fh.writeFile(dataToCSVArray, pathTo, false, "book_id|city_id\n");
+                            System.out.println("Finsihed one book number - remaining " + files.size());
                         }
                     }
                 };
+
                 executor.execute(t);
             }
             executor.shutdown();
             while (!executor.isTerminated()) {
             }
         }
-        String[][] dataToCSVArray = new String[dataToCSV.size()][2];
-        for (int i = 0; i < dataToCSV.size(); i++) {
-            String[] s = dataToCSV.get(i);
-            dataToCSVArray[i] = s;
-        }
-        fh.writeFile(dataToCSVArray, folderPath, "book_id|city_id\n");
+
     }
 }
