@@ -303,16 +303,18 @@ public class FileSearch {
                             for (String s : foundCities.keySet()) {
                                 String cityID = cityToKey.get(s);
                                 String[] row = {bookID, cityID};
-                                dataToCSV.add(row);
+                                String[][] rowtmp = new String[1][2];
+                                rowtmp[0]=row;
+                                fh.writeFile(rowtmp, pathTo, false, "book_id|city_id\n");
                             }
-
-                            String[][] dataToCSVArray = new String[dataToCSV.size()][2];
-                            for (int i = 0; i < dataToCSV.size(); i++) {
-                                String[] s = dataToCSV.get(i);
-                                dataToCSVArray[i] = s;
-                            }
-                            fh.writeFile(dataToCSVArray, pathTo, false, "book_id|city_id\n");
-                            System.out.println("Finsihed one book number - remaining " + files.size());
+//
+//                            String[][] dataToCSVArray = new String[dataToCSV.size()][2];
+//                            for (int i = 0; i < dataToCSV.size(); i++) {
+//                                String[] s = dataToCSV.get(i);
+//                                dataToCSVArray[i] = s;
+//                            }
+//                            fh.writeFile(dataToCSVArray, pathTo, false, "book_id|city_id\n");
+//                            System.out.println("Finsihed one book number - remaining " + files.size());
                         }
                     }
                 };
