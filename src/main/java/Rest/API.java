@@ -30,23 +30,21 @@ public class API {
 //            }
 //        });
 
-        path("/api/*", () -> {
-            before("/*", (q, a) -> System.out.println("Received Api call"));
-
             // 1: Return a list of books with corresponding authors which mentions a given city.
-            get("/:city", (request, response) -> {
+            get("/getBooksByCity/:city", (request, response) -> {
 
                 String city = request.params(":city");
-
+                
                 JSONObject jsonObject = new JSONObject();
-
+                
+                
                 jsonObject.put("city", city);
 
-                return Response.status(200).entity(jsonObject).build();
+                return jsonObject;
             });
 
-            // 2: Return list of coordinates (lat,lng) of cities mentioned in a given book title
-            get("/:bookTitle", (request, response) -> {
+//            2: Return list of coordinates (lat,lng) of cities mentioned in a given book title
+            get("/getCordsByBook/:bookTitle", (request, response) -> {
 
                 String bookTitle = request.params(":bookTitle");
 
@@ -54,12 +52,12 @@ public class API {
 
                 jsonObject.put("bookTitle", bookTitle);
 
-                return Response.status(200).entity(jsonObject).build();
+                return jsonObject;
             });
 
-            // 3: Return a list of all books mentioned by author, and a list of coordinates for all cities
+            // 3: Return a list of all books written by author, and a list of coordinates for all cities
             // that the author mention in his books.
-            get("/:author", (request, response) -> {
+            get("/getCordsByAuthor/:author", (request, response) -> {
 
                 String author = request.params(":author");
 
@@ -75,11 +73,11 @@ public class API {
                 jsonObject.put("books", books);
                 jsonObject.put("coordinates", coordinates);
 
-                return Response.status(200).entity(jsonObject).build();
+                return jsonObject;
             });
 
             // 4: Return a list of books mentioning a city in a vicinity of a given geolocation (lat,lng)
-            get("/:lat/:lng", (request, response) -> {
+            get("getBooksByGeo/:lat/:lng", (request, response) -> {
 
                 int lat = Integer.parseInt(request.params(":lat"));
                 int lng = Integer.parseInt(request.params(":lng"));
@@ -89,10 +87,8 @@ public class API {
                 jsonObject.put("lat", lat);
                 jsonObject.put("lng", lng);
 
-                return Response.status(200).entity(jsonObject).build();
+                return jsonObject;
             });
-        });
-        
         // more routes
     }
 
