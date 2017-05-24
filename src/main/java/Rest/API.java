@@ -16,7 +16,7 @@ public class API {
         get("/books/:city", new Route() {
             @Override
             public Object handle(Request request, Response response) {
-                sqlMapper.getAuthorsByCityName(cityName);
+                //sqlMapper.getAuthorsByCityName(cityName);
                 return request.params(":city");
             }
         });
