@@ -1,6 +1,7 @@
 package Rest;
 
 import Mappers.SqlMapper;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.ws.rs.core.Response;
@@ -62,10 +63,17 @@ public class API {
 
                 String author = request.params(":author");
 
-
+                // Json object containing a list of all books, and a list of all coordinates
                 JSONObject jsonObject = new JSONObject();
 
-                jsonObject.put("author", author);
+                // Fill this array with a list of all books
+                JSONArray books = new JSONArray();
+
+                // Fill this array with a list of all coordinates for cities mentioned in books by the author
+                JSONArray coordinates = new JSONArray();
+
+                jsonObject.put("books", books);
+                jsonObject.put("coordinates", coordinates);
 
                 return Response.status(200).entity(jsonObject).build();
             });
