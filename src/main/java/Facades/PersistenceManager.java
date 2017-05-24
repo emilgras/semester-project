@@ -30,7 +30,7 @@ public class PersistenceManager {
     private EntityManagerFactory emFactory;
     
     //Change db here
-    private PersistenceManager(Database db){
+    public PersistenceManager(Database db){
         if (null != db) switch (db) {
             case GRAPH:
                 emFactory = Persistence.createEntityManagerFactory("ogm-neo4j_LOCAL");
