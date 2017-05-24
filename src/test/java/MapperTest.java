@@ -1,6 +1,6 @@
 import Mappers.SqlMapper;
-import java.sql.ResultSet;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -12,9 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import org.junit.Ignore;
+
 @Ignore
 public class MapperTest {
 
@@ -38,7 +37,7 @@ public class MapperTest {
     public void testGetAuthorsByCityNameIfDontExist () {
         List<String> expectedResult = new ArrayList<String>();
 
-        ResultSet actualResult = mapper.getAuthorsByCityName("");
+        List actualResult = mapper.getAuthorsByCityName("");
 
         assertThat(actualResult, equalTo(expectedResult));
     }
@@ -52,7 +51,7 @@ public class MapperTest {
 
         //List<String> actualResult = mapper.getAuthorsByCityName("copenhagen");
 
-        ResultSet actualResult = mapper.getBooksMentioningCity(0,0,0);
+        //List actualResult = mapper.getBooksMentioningCity(0,0,0);
 
         //assertThat(actualResult.size(), is(expectedResult));
     }
@@ -62,7 +61,7 @@ public class MapperTest {
     public void testGetAllCitiesByBookTitleIfDontExist () {
         List<String> expectedResult = new ArrayList<String>();
 
-        ResultSet actualResult = mapper.getAllCitiesByBookTitle("");
+        List actualResult = mapper.getAllCitiesByBookTitle("");
 
         //assertThat(actualResult, equalTo(expectedResult));
     }
@@ -71,7 +70,7 @@ public class MapperTest {
     @DisplayName("should return cities corresponding to the the book title")
     public void testGetAllCitiesByBookTitleListSize () {
 
-        ResultSet actualResult = mapper.getAllCitiesByBookTitle("hp");
+        List actualResult = mapper.getAllCitiesByBookTitle("hp");
 
         //assertThat(actualResult.size(), is(5));
     }
@@ -81,7 +80,7 @@ public class MapperTest {
     public void testGetAllBooksWrittenByAuthor () {
         int expectedResult = 3;
 
-        ResultSet actualResult = mapper.getAllBooksWrittenByAuthor("Frank Hansen");
+        List actualResult = mapper.getAllBooksWrittenByAuthor("Frank Hansen");
 
         //assertThat(actualResult.size(), equalTo(expectedResult));
     }

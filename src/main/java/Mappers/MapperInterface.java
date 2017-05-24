@@ -1,14 +1,20 @@
 package Mappers;
 
+
+import NewEntities.Book;
+import NewEntities.City;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MapperInterface {
     
-    public List<String> getAllCitiesByBookTitle(String bookTitle);
+    public ArrayList<City> getAllCitiesByBookTitle(String bookTitle);
 
-    public List<String> getAuthorsByCityName(String cityName);
+    public ArrayList<Book> getAuthorsByCityName(String cityName);
 
-    public List<String> getAllBooksWrittenByAuthor(String author);
+    public ArrayList<Book> getAllBooksWrittenByAuthor(String author);
     
-    public List<String> getBooksMentioningCity(String cityName);
+    public ArrayList<Book> getBooksByGeoLocation(float latitude, float longtitude);
+    
 }
