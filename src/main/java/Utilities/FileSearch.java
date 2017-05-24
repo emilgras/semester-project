@@ -28,7 +28,7 @@ public class FileSearch {
 //        String pathFrom = "/Users/emilgras/Desktop/Books/zipfiles/";
 //        String pathTo = "files/mentions.csv";
 //        fs.createCSVCityMentions(pathFrom, pathTo);
-//        fs.createCSVFromMeta("files/", "/Users/emilgras/Downloads/cache/epub");
+//        fs.createCSVFromMeta("C:\\Users\\Frederik\\Desktop\\5bøger\\TempCSV\\NyCSV", "/Users/emilgras/Downloads/cache/epub");
     }   
 
     public static boolean containsString(File file, String searchString) {
@@ -260,7 +260,7 @@ public class FileSearch {
 //        fh.writeFile(AuthorArray, csvPath + "\\authors.csv", AuthorHeader);
 //        fh.writeFile(WroteArray, csvPath + "\\wrote.csv", WroteHeader);
     }
-
+    
     public void createCSVCityMentions(String folderPath, String pathTo) {
         File dir = new File(folderPath);
         File[] directoryListing = dir.listFiles();
