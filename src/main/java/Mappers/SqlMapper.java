@@ -19,7 +19,7 @@ public class SqlMapper implements SqlMapperInterface {
     String uPass = "frederik2000";
 
     public ResultSet getAllCitiesByBookTitle(String bookTitle) {
-        String query = "select cities.`CityName`,cities.latitude,cities.longitude from cities\n"
+        String query = "cities.latitude,cities.longitude from cities\n"
                 + "inner join mentions on mentions.`CityId` = cities.`CityID`\n"
                 + "inner join books on books.`BookID` = mentions.`BookId`\n"
                 + "where books.`Title` = ?;";

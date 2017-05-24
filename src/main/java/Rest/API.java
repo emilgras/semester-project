@@ -13,10 +13,10 @@ public class API {
 
     public API() {
 
-        get("/:city", new Route() {
+        get("/books/:city", new Route() {
             @Override
             public Object handle(Request request, Response response) {
-                
+                sqlMapper.getAuthorsByCityName(cityName);
                 return request.params(":city");
             }
         });
