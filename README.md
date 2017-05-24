@@ -23,5 +23,7 @@ Read more [here](https://github.com/hilleer/semester-project/wiki/GUIDE:-How-to-
 
 Read more [here](https://github.com/hilleer/semester-project/wiki/Virtual-Machine-Configuration-&-Infrastructure)
 
+## 5. Rapport 
 
+Read more [here](https://github.com/hilleer/semester-project/wiki/Rapport)
 
