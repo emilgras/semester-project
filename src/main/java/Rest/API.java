@@ -32,7 +32,7 @@ public class API {
         path("/api/*", () -> {
             before("/*", (q, a) -> System.out.println("Received Api call"));
 
-            // Return a list of books with corresponding authors which mentions a given city.
+            // 1: Return a list of books with corresponding authors which mentions a given city.
             get("/:city", (request, response) -> {
 
                 String city = request.params(":city");
@@ -44,7 +44,7 @@ public class API {
                 return Response.status(200).entity(jsonObject).build();
             });
 
-            // Return list of coordinates (lat,lng) of cities mentioned in a given book title
+            // 2: Return list of coordinates (lat,lng) of cities mentioned in a given book title
             get("/:bookTitle", (request, response) -> {
 
                 String bookTitle = request.params(":bookTitle");
@@ -56,11 +56,12 @@ public class API {
                 return Response.status(200).entity(jsonObject).build();
             });
 
-            // Return a list of all books mentioned by author, and a list of coordinates for all cities
+            // 3: Return a list of all books mentioned by author, and a list of coordinates for all cities
             // that the author mention in his books.
             get("/:author", (request, response) -> {
 
                 String author = request.params(":author");
+
 
                 JSONObject jsonObject = new JSONObject();
 
@@ -69,7 +70,7 @@ public class API {
                 return Response.status(200).entity(jsonObject).build();
             });
 
-            // Return a list of books mentioning a city in a vicinity of a given geolocation (lat,lng)
+            // 4: Return a list of books mentioning a city in a vicinity of a given geolocation (lat,lng)
             get("/:lat/:lng", (request, response) -> {
 
                 int lat = Integer.parseInt(request.params(":lat"));
