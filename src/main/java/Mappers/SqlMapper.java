@@ -26,20 +26,18 @@ import javax.persistence.Persistence;
 
 public class SqlMapper implements MapperInterface{
 
-<<<<<<< Updated upstream
     
-    String host = "jdbc:mysql://localhost:3306/booksdb";
-    String uName = "root";
-    String uPass = "pwd";
-    
+//    String host = "jdbc:mysql://localhost:3306/booksdb";
+//    String uName = "root";
+//    String uPass = "pwd";
+//    
 //    String host = "jdbc:mysql://localhost:3306/books?zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 //    String uName = "root";
 //    String uPass = "frederik2000";
-=======
     String host = "jdbc:mysql://localhost:3307/books?zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String uName = "root";
     String uPass = "pwd";
->>>>>>> Stashed changes
+
 
     public ArrayList<City> getAllCitiesByBookTitle(String bookTitle) {
         ArrayList<City> result = new ArrayList();
@@ -282,19 +280,19 @@ public class SqlMapper implements MapperInterface{
 
         return result;
     }
-<<<<<<< Updated upstream
 
-    public static void main(String[] args) {
-        //Anonymous
-        //Tenterhooks
-        //Federal
-        SqlMapper s = new SqlMapper();
-        System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
-        System.out.println(s.getAuthorsByCityName("Federal").size());
-        System.out.println(s.getAllBooksWrittenByAuthor("Anonymous").size());
-//        System.out.println(s.getBooksMentioningCity(15, 0).size());
-    }
-=======
+
+//    public static void main(String[] args) {
+//        //Anonymous
+//        //Tenterhooks
+//        //Federal
+//        SqlMapper s = new SqlMapper();
+//        System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
+//        System.out.println(s.getAuthorsByCityName("Federal").size());
+//        System.out.println(s.getAllBooksWrittenByAuthor("Anonymous").size());
+////        System.out.println(s.getBooksMentioningCity(15, 0).size());
+//    }
+
     
     public List<Authors> getAll(){
              EntityManagerFactory entityManagerFactory;
@@ -338,5 +336,5 @@ public class SqlMapper implements MapperInterface{
         //System.out.println(s.getAll().get(0).getAuthorName());
         System.out.println(s.getAllBooksWrittenByAuthorWithJPA("Dante Alighieri"));
    }
->>>>>>> Stashed changes
+
 }
