@@ -1,5 +1,8 @@
 package Mappers;
 
+import Entities.sql.Authors;
+import Entities.sql.Books;
+import Entities.sql.Wrote;
 import NewEntities.Author;
 import NewEntities.Book;
 import NewEntities.City;
@@ -17,9 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class SqlMapper implements MapperInterface{
 
+<<<<<<< Updated upstream
     
     String host = "jdbc:mysql://localhost:3306/booksdb";
     String uName = "root";
@@ -28,6 +35,11 @@ public class SqlMapper implements MapperInterface{
 //    String host = "jdbc:mysql://localhost:3306/books?zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 //    String uName = "root";
 //    String uPass = "frederik2000";
+=======
+    String host = "jdbc:mysql://localhost:3307/books?zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String uName = "root";
+    String uPass = "pwd";
+>>>>>>> Stashed changes
 
     public ArrayList<City> getAllCitiesByBookTitle(String bookTitle) {
         ArrayList<City> result = new ArrayList();
@@ -149,7 +161,7 @@ public class SqlMapper implements MapperInterface{
 
     public ArrayList<Book> getAllBooksWrittenByAuthor(String author) {
         ArrayList<Book> result = new ArrayList();
-        String query = "select books.`Title`, cities.`CityName`,cities.latitude,cities.longitude from books\n"
+        String query = "select books.Title, cities.`CityName`,cities.latitude,cities.longitude from books\n"
                 + "inner join mentions on mentions.`BookId` = books.`BookID`\n"
                 + "inner join cities on cities.`CityID` = mentions.`CityId`\n"
                 + "inner join wrote on wrote.`BookId` = books.`BookID`\n"
@@ -270,6 +282,7 @@ public class SqlMapper implements MapperInterface{
 
         return result;
     }
+<<<<<<< Updated upstream
 
     public static void main(String[] args) {
         //Anonymous
@@ -281,4 +294,49 @@ public class SqlMapper implements MapperInterface{
         System.out.println(s.getAllBooksWrittenByAuthor("Anonymous").size());
 //        System.out.println(s.getBooksMentioningCity(15, 0).size());
     }
+=======
+    
+    public List<Authors> getAll(){
+             EntityManagerFactory entityManagerFactory;
+              entityManagerFactory = Persistence.createEntityManagerFactory("pu_testDB");
+         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+    entityManager.getTransaction().begin();
+   
+    List<Authors> loadedAuthor = entityManager.createNamedQuery("Authors.findAll", Authors.class).getResultList();
+
+    entityManager.close();
+    return loadedAuthor;
+    }
+    public String getAllBooksWrittenByAuthorWithJPA(String author) {
+         EntityManagerFactory entityManagerFactory;
+              entityManagerFactory = Persistence.createEntityManagerFactory("pu_testDB");
+         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+    entityManager.getTransaction().begin();
+     Authors authors = entityManager.createNamedQuery("Authors.findByAuthorName", Authors.class).setParameter("authorName", author).getSingleResult();
+     
+    entityManager.close();
+        return authors.getAuthorName();
+    }
+    
+    
+    
+
+    public static void main(String[] args) {
+       //Anonymous
+      //Tenterhooks
+     //Federal
+     SqlMapper s = new SqlMapper();
+       //System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
+       // System.out.println(s.getAuthorsByCityName("Federal").size());
+       // System.out.println(s.getAllBooksWrittenByAuthor("Dante Alighieri").size());
+       // System.out.println(s.getBooksMentioningCity(15, 0).size());
+       
+   
+       
+        //System.out.println(s.getAll().get(0).getAuthorName());
+        System.out.println(s.getAllBooksWrittenByAuthorWithJPA("Dante Alighieri"));
+   }
+>>>>>>> Stashed changes
 }

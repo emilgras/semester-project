@@ -1,11 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+///*
+// * To change this license header, choose License Headers in Project Properties.
+// * To change this template file, choose Tools | Templates
+// * and open the template in the editor.
+// */
 package DBTest;
 
-import Entities.sql.Author;
+import Entities.sql.Authors;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,7 +21,7 @@ import org.junit.Ignore;
  *
  * @author abj
  */
- @Ignore
+@Ignore
 public class SQLDbConnectionTest {
     
     private static EntityManagerFactory entityManagerFactory;
@@ -42,31 +43,14 @@ public class SQLDbConnectionTest {
 
     
     @Test
-    @Ignore
     public void canPersistAndLoadAuthor(){
     
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     entityManager.getTransaction().begin();
    
-    // create an Author
-    Author bob = new Author( "Bob");
-    entityManager.persist( bob );
-
-    entityManager.getTransaction().commit();
-
-    // get a new EM to make sure data is actually retrieved from the store and not Hibernate's internal cache
-    entityManager.close();
-    entityManager = entityManagerFactory.createEntityManager();
-    
-     // load it back
-    entityManager.getTransaction().begin();
-
-    Author loadedAuthor = entityManager.find( Author.class, bob.getId() );
+    List<Authors> loadedAuthor = entityManager.createNamedQuery("Authors.findAll", Authors.class).getResultList();
     assertNotNull(loadedAuthor);
-    assertThat(loadedAuthor.getAuthorName(), equalTo("Bob"));
-    entityManager.getTransaction().commit();
-
     entityManager.close();
     
     }
