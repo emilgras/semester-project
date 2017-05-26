@@ -20,9 +20,14 @@ import java.util.logging.Logger;
 
 public class SqlMapper implements MapperInterface{
 
-    String host = "jdbc:mysql://localhost:3306/books?zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    
+    String host = "jdbc:mysql://localhost:3306/booksdb";
     String uName = "root";
-    String uPass = "frederik2000";
+    String uPass = "pwd";
+    
+//    String host = "jdbc:mysql://localhost:3306/books?zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//    String uName = "root";
+//    String uPass = "frederik2000";
 
     public ArrayList<City> getAllCitiesByBookTitle(String bookTitle) {
         ArrayList<City> result = new ArrayList();
@@ -46,8 +51,8 @@ public class SqlMapper implements MapperInterface{
                 while (rs.next()) {
                     City c = new City();
                     c.setCityName(rs.getString(1));
-                    c.setLatitude(rs.getFloat(2));
-                    c.setLongtitude(rs.getFloat(3));
+                    c.setLatitude(""+rs.getFloat(2));
+                    c.setLongtitude(""+rs.getFloat(3));
                     result.add(c);
                 }
             } catch (SQLException ex) {
@@ -170,15 +175,15 @@ public class SqlMapper implements MapperInterface{
                         b.setTitle(rs.getString(1));
                         City c = new City();
                         c.setCityName(rs.getString(2));
-                        c.setLatitude(rs.getFloat(3));
-                        c.setLongtitude(rs.getFloat(4));
+                        c.setLatitude(""+rs.getFloat(3));
+                        c.setLongtitude(""+rs.getFloat(4));
                         b.getCities().add(c);
                         books.put(rs.getString(1), b);
                     } else {
                         City c = new City();
                         c.setCityName(rs.getString(2));
-                        c.setLatitude(rs.getFloat(3));
-                        c.setLongtitude(rs.getFloat(4));
+                        c.setLatitude(""+rs.getFloat(3));
+                        c.setLongtitude(""+rs.getFloat(4));
                         b.getCities().add(c);
                     }
                     result.add(b);
@@ -266,14 +271,14 @@ public class SqlMapper implements MapperInterface{
         return result;
     }
 
-//    public static void main(String[] args) {
-//        //Anonymous
-//        //Tenterhooks
-//        //Federal
-//        SqlMapper s = new SqlMapper();
-//        System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
-//        System.out.println(s.getAuthorsByCityName("Federal").size());
-//        System.out.println(s.getAllBooksWrittenByAuthor("Anonymous").size());
+    public static void main(String[] args) {
+        //Anonymous
+        //Tenterhooks
+        //Federal
+        SqlMapper s = new SqlMapper();
+        System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
+        System.out.println(s.getAuthorsByCityName("Federal").size());
+        System.out.println(s.getAllBooksWrittenByAuthor("Anonymous").size());
 //        System.out.println(s.getBooksMentioningCity(15, 0).size());
-//    }
+    }
 }
