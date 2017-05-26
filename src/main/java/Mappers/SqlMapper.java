@@ -328,13 +328,14 @@ public class SqlMapper implements MapperInterface{
      SqlMapper s = new SqlMapper();
        //System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
        // System.out.println(s.getAuthorsByCityName("Federal").size());
-       // System.out.println(s.getAllBooksWrittenByAuthor("Dante Alighieri").size());
+      // System.out.println(s.getAllBooksWrittenByAuthor("Jefferson, Thomas").size());
+        System.out.println(s.getAuthorsByCityName("Dubai").size());
        // System.out.println(s.getBooksMentioningCity(15, 0).size());
        
    
        
         //System.out.println(s.getAll().get(0).getAuthorName());
-        System.out.println(s.getAllBooksWrittenByAuthorWithJPA("Dante Alighieri"));
+        //System.out.println(s.getAllBooksWrittenByAuthorWithJPA("Dante Alighieri"));
    }
 
 }
