@@ -17,6 +17,9 @@ public class Author {
     int id;
     String name;
 
+    public Author() {
+    }
+
     public int getId() {
         return id;
     }

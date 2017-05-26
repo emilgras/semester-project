@@ -13,8 +13,8 @@ package NewEntities;
 public class City {
     int id;
     String cityName;
-    float latitude;
-    float longtitude;
+    String latitude;
+    String longtitude;
 
     public int getId() {
         return id;
@@ -32,19 +32,19 @@ public class City {
         this.cityName = cityName;
     }
 
-    public float getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongtitude() {
+    public String getLongtitude() {
         return longtitude;
     }
 
-    public void setLongtitude(float longtitude) {
+    public void setLongtitude(String longtitude) {
         this.longtitude = longtitude;
     }
     
