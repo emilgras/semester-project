@@ -25,5 +25,5 @@ Read more [here](https://github.com/hilleer/semester-project/wiki/Virtual-Machin
 
 ## 5. Rapport 
 
-Read more [here](https://github.com/hilleer/semester-project/wiki/Rapport)
+**Database:** Read more [here](https://github.com/hilleer/semester-project/wiki/Rapport)
 
