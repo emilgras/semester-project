@@ -19,6 +19,9 @@ public class Book {
     ArrayList<City> cities = new ArrayList();
     ArrayList<Author> authors = new ArrayList();
 
+    public Book() {
+    }
+
     public ArrayList<Author> getAuthors() {
         return authors;
     }
