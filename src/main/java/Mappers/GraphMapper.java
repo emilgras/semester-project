@@ -24,7 +24,7 @@ import org.neo4j.driver.v1.Value;
  *
  * @author emilgras
  */
-public class GraphMapper {
+public class GraphMapper implements MapperInterface {
 
     private Driver driver;
     private Session session;
@@ -34,7 +34,8 @@ public class GraphMapper {
     }
 
     // Given a city name your application returns all book titles with corresponding authors that mention this city.
-    public ArrayList<Book> getBooksMentioningCity(String cityName) {  
+    @Override
+    public ArrayList<Book> getAuthorsByCityName(String cityName) {
         session = driver.session();
         String cypher = "MATCH (a:Author)-[:WROTE]->(b:Book)-[:MENTIONS]->(c:City) WHERE c.city_name = '" + cityName + "' RETURN b.book_title,a.author_name";
         ArrayList<Book> books = new ArrayList();
@@ -55,6 +56,7 @@ public class GraphMapper {
     }
     
     // Given a book title, your application plots all cities mentioned in this book onto a map.
+    @Override
     public ArrayList<City> getAllCitiesByBookTitle(String bookTitle) {
         session = driver.session();
         String cypher = "MATCH (c:City)<-[:MENTIONS]-(b:Book) WHERE b.book_title = \"" + bookTitle + "\" RETURN c.city_name, c.latt, c.long";
@@ -78,6 +80,7 @@ public class GraphMapper {
     }
     
     // Given an author name your application lists all books written by that author and plots all cities mentioned in any of the books onto a map.
+    @Override
     public ArrayList<Book> getAllBooksWrittenByAuthor(String author) {
         session = driver.session();
         String cypher = "MATCH (c:City)<-[:MENTIONS]-(b:Book)<-[:WROTE]-(a:Author) WHERE a.author_name = \"" + author + "\" RETURN b.book_title, c.city_name, c.latt, c.long";
@@ -119,6 +122,7 @@ public class GraphMapper {
     }
 
     // Given a geolocation, your application lists all books mentioning a city in vicinity of the given geolocation.
+    @Override
     public ArrayList<Book> getBooksByGeoLocation(float lattitude, float longtitude) {
         session = driver.session();
         String cypher = "MATCH (b:Book)-[mentions:MENTIONS]->(c:City)\n" +
@@ -155,5 +159,7 @@ public class GraphMapper {
         System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)34.10737, (float)64.3052));
         
     }
+
+    
 
 }

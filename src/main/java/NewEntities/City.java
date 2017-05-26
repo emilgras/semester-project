@@ -16,6 +16,18 @@ public class City {
     String latitude;
     String longtitude;
 
+    public City(int id, String cityName, String latitude, String longtitude) {
+        this.id = id;
+        this.cityName = cityName;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
+    }
+
+    public City() {
+        
+    }
+
+    
     public int getId() {
         return id;
     }

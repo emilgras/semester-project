@@ -22,6 +22,11 @@ public class Book {
     public Book() {
     }
 
+    public Book(String id, String Title) {
+        this.id = id;
+        this.Title = Title;
+    }
+
     public ArrayList<Author> getAuthors() {
         return authors;
     }
