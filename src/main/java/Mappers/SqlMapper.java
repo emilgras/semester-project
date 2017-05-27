@@ -327,9 +327,26 @@ public class SqlMapper implements MapperInterface{
      //Federal
      SqlMapper s = new SqlMapper();
        //System.out.println(s.getAllCitiesByBookTitle("Tenterhooks").size());
-       // System.out.println(s.getAuthorsByCityName("Federal").size());
+       //String bookTitle = "The Complete Works of William Shakespeare";
+//       float lat = 24.8835f;
+//       float longti = 90.729f;
+        String author = "Poe, Edgar Allan";
+       
+       long startTime = System.currentTimeMillis();
+       
+        //s.getBooksByGeoLocation(lat,longti);
+        //
+        s.getAllBooksWrittenByAuthor(author);
+        long stopTime = System.currentTimeMillis();
+        int size =  s.getAllBooksWrittenByAuthor(author).size();
+        System.out.println(size);
+        System.out.printf("Database: [%s] - Author: [%s] - Time: %d \n", "Mysql", author, stopTime - startTime);
+       // System.out.printf("Database: [%s] - Geo Location: [%s] - Time: %d \n", "Mysql", lat+ "," +longti, stopTime - startTime);
+        //System.out.printf("Database: [%s] - Book Title: [%s] - Time: %d \n", "Mysql", bookTitle, stopTime - startTime);
+        //System.out.printf("Database: [%s] - City: [%s] - Time: %d \n", "Mysql", city, stopTime - startTime);
+     
       // System.out.println(s.getAllBooksWrittenByAuthor("Jefferson, Thomas").size());
-        System.out.println(s.getAuthorsByCityName("Dubai").size());
+       // System.out.println(s.getAuthorsByCityName("Dubai").size());
        // System.out.println(s.getBooksMentioningCity(15, 0).size());
        
    

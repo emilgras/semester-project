@@ -19,6 +19,7 @@ import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
 import org.neo4j.driver.v1.Value;
+import org.neo4j.driver.v1.Values;
 
 /**
  *
@@ -124,6 +125,7 @@ public class GraphMapper {
         String cypher = "MATCH (b:Book)-[mentions:MENTIONS]->(c:City)\n" +
         "WHERE c.latt-10 < 25 and c.latt+10 > 25 and c.long-10 < 55 and c.long+10 > 55\n" +
         "RETURN b.book_title";
+ 
         ArrayList<Book> books = new ArrayList();
         StatementResult result = session.run(cypher);
         while (result.hasNext()) {
@@ -150,9 +152,27 @@ public class GraphMapper {
 //        for (Book book : books) {
 //            System.out.println("title: " + book.getTitle() + ", city size: " + book.getCities().size());
 //        }
-    
+    long startTime = System.currentTimeMillis();
+       
+        //s.getBooksByGeoLocation(lat,longti);
+        //
+        float lat = 25.28812f;
+        float longti = 55.88157f;
+        String author = "Poe, Edgar Allan";
+        String city = "Manage";
+        String bookTitle = "The Complete Works of William Shakespeare";
+       
+       // mapper.getBooksByGeoLocation(lat, longti);
+        long stopTime = System.currentTimeMillis();
+        int size =  mapper.getBooksByGeoLocation(lat, longti).size();
+        //mapper.getAllCitiesByBookTitle(bookTitle);
+        //System.out.println(mapper.getAllCitiesByBookTitle(bookTitle).size());
+        System.out.println(size);
+        //System.out.printf("Database: [%s] - Book Title: [%s] - Time: %d \n", "Graph", bookTitle, stopTime - startTime);
+        //System.out.printf("Database: [%s] - City: [%s] - Time: %d \n", "Graph", city, stopTime - startTime);
+        System.out.printf("Database: [%s] - GeoLocation: [%s] - Time: %d \n", "Graph", lat + "," + longti, stopTime - startTime);
         // Test Query 4
-        System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)34.10737, (float)64.3052));
+        //System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)34.10737, (float)64.3052));
         
     }
 
