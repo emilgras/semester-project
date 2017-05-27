@@ -150,40 +150,52 @@ public class GraphMapper {
     public static void main(String[] args) {
         GraphMapper mapper = new GraphMapper();
 
-        // Test Query 1
-        System.out.println("Query 1: " + mapper.getBooksMentioningCity("Much").size());
-        
-        // Test Query 2
-        System.out.println("Query 2: " + mapper.getAllCitiesByBookTitle("Divine Comedy, Cary's Translation, Hell").size());
-        
-        // Test Query 3
-        ArrayList<Book> books = mapper.getAllBooksWrittenByAuthor("Dante Alighieri");
-        for (Book book : books) {
-            System.out.println("title: " + book.getTitle() + ", city size: " + book.getCities().size());
-        }
-    
-        // Test Query 4
-        System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)52.52437, (float)13.41053).get(0).getTitle());
+//        // Test Query 1
+//        System.out.println("Query 1: " + mapper.getBooksMentioningCity("Much").size());
+//        
+//        // Test Query 2
+//        System.out.println("Query 2: " + mapper.getAllCitiesByBookTitle("Divine Comedy, Cary's Translation, Hell").size());
+//        
+//        // Test Query 3
+//        ArrayList<Book> books = mapper.getAllBooksWrittenByAuthor("Dante Alighieri");
+//        for (Book book : books) {
+//            System.out.println("title: " + book.getTitle() + ", city size: " + book.getCities().size());
+//        }
+//    
+//        // Test Query 4
+//        System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)52.52437, (float)13.41053).get(0).getTitle());
 
-    long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
        
         //s.getBooksByGeoLocation(lat,longti);
         //
-        float lat = 25.28812f;
-        float longti = 55.88157f;
-        String author = "Poe, Edgar Allan";
-        String city = "Manage";
-        String bookTitle = "The Complete Works of William Shakespeare";
+        float lat = 22.78774f;
+        float longti = 56.23457f;
+        String author = "Jefferson, Thomas";
+        String city = "Berlin";
+        String bookTitle = "365 Foreign Dishes: A Foreign Dish for Every Day in the Year";
        
-       // mapper.getBooksByGeoLocation(lat, longti);
+        mapper.getBooksMentioningCity(city);
+//        mapper.getAllCitiesByBookTitle(bookTitle);
+//        mapper.getAllBooksWrittenByAuthor(author);
+//        mapper.getBooksByGeoLocation(lat, longti);
         long stopTime = System.currentTimeMillis();
-        int size =  mapper.getBooksByGeoLocation(lat, longti).size();
-        //mapper.getAllCitiesByBookTitle(bookTitle);
+        
+        
+        
+        
+//        int size =  mapper.getBooksByGeoLocation(lat, longti).size();
+//        int numOfBooks = mapper.getAllBooksWrittenByAuthor(author).size();
+//        int size = mapper.getAllCitiesByBookTitle(bookTitle).size();
+        int size = mapper.getBooksMentioningCity(city).size();
+
+//        mapper.getAllCitiesByBookTitle(bookTitle);
         //System.out.println(mapper.getAllCitiesByBookTitle(bookTitle).size());
         System.out.println(size);
-        //System.out.printf("Database: [%s] - Book Title: [%s] - Time: %d \n", "Graph", bookTitle, stopTime - startTime);
-        //System.out.printf("Database: [%s] - City: [%s] - Time: %d \n", "Graph", city, stopTime - startTime);
-        System.out.printf("Database: [%s] - GeoLocation: [%s] - Time: %d \n", "Graph", lat + "," + longti, stopTime - startTime);
+//        System.out.printf("Database: [%s] - Book Title: [%s] - Time: %d \n", "Graph", bookTitle, stopTime - startTime);
+        System.out.printf("Database: [%s] - City: [%s] - Time: %d \n", "Graph", city, stopTime - startTime);
+//        System.out.printf("Database: [%s] - Author: [%s] - Time: %d \n", "Graph", author, stopTime - startTime);
+//        System.out.printf("Database: [%s] - GeoLocation: [%s] - Time: %d \n", "Graph", lat + "," + longti, stopTime - startTime);
         // Test Query 4
         //System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)34.10737, (float)64.3052));
 
