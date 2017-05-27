@@ -19,6 +19,7 @@ import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
 import org.neo4j.driver.v1.Value;
+import org.neo4j.driver.v1.Values;
 
 /**
  *
@@ -122,6 +123,7 @@ public class GraphMapper {
     public ArrayList<Book> getBooksByGeoLocation(float lattitude, float longtitude) {
         int distance = 1000;
         session = driver.session();
+
                 
         String cypher = "" +
             "MATCH (b:Book)-[:MENTIONS]->(c:City)\n" +
@@ -130,6 +132,7 @@ public class GraphMapper {
             "ORDER BY distance DESC\n" +
             "WHERE distance / 1000 < "+ distance +"\n" +
             "RETURN b.book_title";
+
 
         ArrayList<Book> books = new ArrayList();
         StatementResult result = session.run(cypher);
@@ -146,6 +149,7 @@ public class GraphMapper {
     
     public static void main(String[] args) {
         GraphMapper mapper = new GraphMapper();
+
         // Test Query 1
         System.out.println("Query 1: " + mapper.getBooksMentioningCity("Much").size());
         
@@ -160,6 +164,29 @@ public class GraphMapper {
     
         // Test Query 4
         System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)52.52437, (float)13.41053).get(0).getTitle());
+
+    long startTime = System.currentTimeMillis();
+       
+        //s.getBooksByGeoLocation(lat,longti);
+        //
+        float lat = 25.28812f;
+        float longti = 55.88157f;
+        String author = "Poe, Edgar Allan";
+        String city = "Manage";
+        String bookTitle = "The Complete Works of William Shakespeare";
+       
+       // mapper.getBooksByGeoLocation(lat, longti);
+        long stopTime = System.currentTimeMillis();
+        int size =  mapper.getBooksByGeoLocation(lat, longti).size();
+        //mapper.getAllCitiesByBookTitle(bookTitle);
+        //System.out.println(mapper.getAllCitiesByBookTitle(bookTitle).size());
+        System.out.println(size);
+        //System.out.printf("Database: [%s] - Book Title: [%s] - Time: %d \n", "Graph", bookTitle, stopTime - startTime);
+        //System.out.printf("Database: [%s] - City: [%s] - Time: %d \n", "Graph", city, stopTime - startTime);
+        System.out.printf("Database: [%s] - GeoLocation: [%s] - Time: %d \n", "Graph", lat + "," + longti, stopTime - startTime);
+        // Test Query 4
+        //System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)34.10737, (float)64.3052));
+
         
     }
 
