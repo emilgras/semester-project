@@ -120,10 +120,17 @@ public class GraphMapper {
 
     // Given a geolocation, your application lists all books mentioning a city in vicinity of the given geolocation.
     public ArrayList<Book> getBooksByGeoLocation(float lattitude, float longtitude) {
+        int distance = 1000;
         session = driver.session();
-        String cypher = "MATCH (b:Book)-[mentions:MENTIONS]->(c:City)\n" +
-        "WHERE c.latt-10 < 25 and c.latt+10 > 25 and c.long-10 < 55 and c.long+10 > 55\n" +
-        "RETURN b.book_title";
+                
+        String cypher = "" +
+            "MATCH (b:Book)-[:MENTIONS]->(c:City)\n" +
+            "WITH point({ longitude: toInteger(c.long), latitude: toInteger(c.latt) }) AS aPoint, point({ longitude: " + longtitude + ", latitude: " + lattitude + " }) AS bPoint, b, c\n" +
+            "WITH DISTINCT round(distance(aPoint, bPoint)) AS distance, b, c\n" +
+            "ORDER BY distance DESC\n" +
+            "WHERE distance / 1000 < "+ distance +"\n" +
+            "RETURN b.book_title";
+
         ArrayList<Book> books = new ArrayList();
         StatementResult result = session.run(cypher);
         while (result.hasNext()) {
@@ -139,20 +146,20 @@ public class GraphMapper {
     
     public static void main(String[] args) {
         GraphMapper mapper = new GraphMapper();
-//        // Test Query 1
-//        System.out.println("Query 1: " + mapper.getBooksMentioningCity("Much").size());
-//        
-//        // Test Query 2
-//        System.out.println("Query 2: " + mapper.getAllCitiesByBookTitle("Divine Comedy, Cary's Translation, Hell").size());
-//        
-//        // Test Query 3
-//        ArrayList<Book> books = mapper.getAllBooksWrittenByAuthor("Dante Alighieri");
-//        for (Book book : books) {
-//            System.out.println("title: " + book.getTitle() + ", city size: " + book.getCities().size());
-//        }
+        // Test Query 1
+        System.out.println("Query 1: " + mapper.getBooksMentioningCity("Much").size());
+        
+        // Test Query 2
+        System.out.println("Query 2: " + mapper.getAllCitiesByBookTitle("Divine Comedy, Cary's Translation, Hell").size());
+        
+        // Test Query 3
+        ArrayList<Book> books = mapper.getAllBooksWrittenByAuthor("Dante Alighieri");
+        for (Book book : books) {
+            System.out.println("title: " + book.getTitle() + ", city size: " + book.getCities().size());
+        }
     
         // Test Query 4
-        System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)34.10737, (float)64.3052));
+        System.out.println("Query 4: " + mapper.getBooksByGeoLocation((float)52.52437, (float)13.41053).get(0).getTitle());
         
     }
 
