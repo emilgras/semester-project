@@ -1,7 +1,10 @@
 import Entities.nosql.BookGraphEntity;
 import Entities.nosql.CityGraphEntity;
 import Entities.nosql.GeoLocation;
-import Mappers.NoSqlMapper;
+import Mappers.GraphMapper;
+import Mappers.MapperInterface;
+import NewEntities.Book;
+import NewEntities.City;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -20,11 +23,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Ignore
 public class NoSqlMapperTest {
 
-    static NoSqlMapper mapper;
+    static MapperInterface mapper;
 
     @BeforeClass
     public static void beforeClass () {
-        mapper = new NoSqlMapper();
+        mapper = new GraphMapper();
 
     }
 
@@ -43,7 +46,7 @@ public class NoSqlMapperTest {
 
         List<BookGraphEntity> expectedResult = new ArrayList();
 
-        List<BookGraphEntity> actualResult = mapper.getBooksMentioningCity(cityname);
+        ArrayList<Book> actualResult = mapper.getAuthorsByCityName(cityname);
 
         assertThat(actualResult, equalTo(expectedResult));
     }
@@ -55,7 +58,7 @@ public class NoSqlMapperTest {
 
         List<CityGraphEntity> expectedResult = new ArrayList();
 
-        List<CityGraphEntity> actualResult = mapper.getAllCitiesByBookTitle(bookTitle);
+        ArrayList<City> actualResult = mapper.getAllCitiesByBookTitle(bookTitle);
 
         assertThat(actualResult, equalTo(expectedResult));
     }
@@ -67,7 +70,7 @@ public class NoSqlMapperTest {
 
         List<BookGraphEntity> expectedResult = new ArrayList();
 
-        List<BookGraphEntity> actualResult = mapper.getAllBooksWrittenByAuthor(author);
+        ArrayList<Book> actualResult = mapper.getAllBooksWrittenByAuthor(author);
 
         assertThat(actualResult, equalTo(expectedResult));
     }
@@ -77,10 +80,11 @@ public class NoSqlMapperTest {
     public void testGetAuthorsByCityName () {
 
         GeoLocation geoLocation = new GeoLocation();
-
+        String cityName = "";
+        
         List<BookGraphEntity> expectedResult = new ArrayList();
 
-        List<BookGraphEntity> actualResult = mapper.getAuthorsByCityName(geoLocation);
+        ArrayList<Book> actualResult = mapper.getAuthorsByCityName(cityName);
 
         assertThat(actualResult, equalTo(expectedResult));
 

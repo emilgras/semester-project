@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SqlMapper implements MapperInterface{
+public class SqlMapper implements MapperInterface {
 
     
     String host = "jdbc:mysql://localhost:3306/booksdb";
