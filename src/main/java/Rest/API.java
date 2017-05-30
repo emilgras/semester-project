@@ -23,7 +23,7 @@ import static spark.Spark.*;
 public class API {
 
     SqlMapper sqlMapper = new SqlMapper();
-    UserFacadeInterface userFacade;
+
     
     private static final HashMap<String, String> corsHeaders = new HashMap<String, String>();
     
@@ -47,9 +47,7 @@ public class API {
     }
     
     public API() {
-        
-        MapperInterface mapper = new GraphMapper();
-        userFacade = new UserFacade(mapper);
+
         
         // 1: Return a list of books with corresponding authors which mentions a given city.
         get("/getBooksByCity/:city", (request, response) -> {
